@@ -236,12 +236,13 @@ const Contact = () => {
   // Modified handleSubmit to show OTP popup instead of submitting directly
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormStatus({ submitting: true, submitted: false, error: null });
 
     // Basic validation
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.message.trim()) newErrors.message = "Message is required";
+    if (!formData.name.trim()) newErrors.name = "Name is required"  setFormStatus({ submitting: false, submitted: false, error: null });;
+    if (!formData.email.trim()) newErrors.email = "Email is required"   setFormStatus({ submitting: false, submitted: false, error: null });;
+    if (!formData.message.trim()) newErrors.message = "Message is required"   setFormStatus({ submitting: false, submitted: false, error: null });;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -251,10 +252,11 @@ const Contact = () => {
     // Email validation
     const isValidEmail = await validateEmail(formData.email);
     if (!isValidEmail) {
+      setFormStatus({ submitting: false, submitted: false, error: null });
       setErrors({ email: "Please enter a valid email address" });
       return;
     }
-    setFormStatus({ submitting: true, submitted: false, error: null });
+    
     showOtpModal(formData.email);
   };
 
