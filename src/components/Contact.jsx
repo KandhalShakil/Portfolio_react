@@ -254,7 +254,7 @@ const Contact = () => {
       setErrors({ email: "Please enter a valid email address" });
       return;
     }
-
+    setFormStatus({ submitting: true, submitted: false, error: null });
     showOtpModal(formData.email);
   };
 
