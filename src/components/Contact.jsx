@@ -91,7 +91,7 @@ const Contact = () => {
     // In a real application, you would send the OTP to the user's email here
     console.log("Generated OTP:", newOtp);
     emailjs.send("service_emks25r", "template_h8r9vlo", {
-      image : 'pic.jpg',
+      image : 'https://github.com/KandhalShakil/Portfolio_react/blob/main/public/pic.jpg?raw=true',
       passcode: newOtp,
       email: email,
     } , "HiT1qgF3NG4BIwyQY")
