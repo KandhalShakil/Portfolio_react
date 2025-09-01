@@ -14,7 +14,7 @@ const projectsData = [
     img: "https://github.com/KandhalShakil/Sky_Event/blob/main/logo.jpg?raw=true",
     title: "SKY Event",
     description:
-      "Sky Event is a visually engaging, professionally designed website intended for event management and promotion. Built using HTML5, CSS3, and JavaScript, it delivers a dynamic user experience with a traditional focus on clear, structured layouts, balanced with modern responsiveness and flair.",
+      "A responsive event management and promotion website built with HTML5, CSS3, and JavaScript. SKY Event combines traditional structured layouts with modern interactivity, providing a professional platform for showcasing events. It emphasizes user experience through clean navigation, dynamic visuals, and cross-device accessibility, ensuring both elegance and functionality.",
     link: "https://sky-event.vercel.app/",
     github: "https://github.com/KandhalShakil/Sky_Event",
   },
@@ -22,7 +22,7 @@ const projectsData = [
     img: "https://img.freepik.com/premium-vector/tic-tac-toe-logo-icon_1076610-87173.jpg",
     title: "Tic tac toe",
     description:
-      "This project delivers a fresh yet traditionally rooted version of the classic Tic-Tac-Toe game. Built entirely with HTML, CSS, and JavaScript, it brings timeless gameplay to a modern, responsive interface.",
+      "A timeless Tic-Tac-Toe game developed with HTML, CSS, and JavaScript. This project offers a responsive design that preserves the simplicity of traditional gameplay while adapting seamlessly to modern devices. It demonstrates the balance of minimalistic design principles and engaging interactivity, ensuring smooth performance for players of all ages.",
     link: "https://tic-tac-toe-game-cyan-five.vercel.app/",
     github: "https://github.com/KandhalShakil/TIC-TAC-TOE-GAME",
   },
@@ -30,9 +30,17 @@ const projectsData = [
     img: "pic.jpg",
     title: "Personal Portfolio",
     description:
-      "A personal portfolio website showcasing projects, skills, and experience. Built with React and styled-components for a modern look and feel.",
+      "A React.js-powered portfolio website highlighting projects, technical expertise, and personal achievements. Styled with styled-components, it reflects professionalism through modern UI design, responsiveness, and clear project presentation. The portfolio serves as a personal brand hub, blending creativity with structure, ensuring recruiters and collaborators can easily explore skills, experiences, and work samples.",
     link: "https://shakil-kandhal-portfolio.vercel.app/",
     github: "https://github.com/KandhalShakil/Portfolio_react",
+  },
+  {
+    img: "game.jpg",
+    title: "Tic Tac Toe Game Using React",
+    description:
+      "An advanced Tic-Tac-Toe game built with React.js and Node.js, featuring AI opponents, authentication, game statistics, and a sleek dark mode UI. It extends classic gameplay into a modern digital experience with intelligent design and enhanced features, showcasing the integration of frontend, backend, and interactive functionality in a single project.",
+    link: "https://kandhal-shakil-game.vercel.app/",
+    github: "https://github.com/KandhalShakil/Tic-tac-toe-react",
   },
 ];
 
