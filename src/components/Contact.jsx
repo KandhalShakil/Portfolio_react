@@ -6,6 +6,7 @@ import {
   faClock,
   faPaperPlane,
   faTimes,
+  faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import emailjs from "emailjs-com";
 
@@ -35,6 +36,8 @@ const Contact = () => {
   const [otpVerified, setOtpVerified] = useState(false);
   const [otpExpiry, setOtpExpiry] = useState(null);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
+  const [isResendingOtp, setIsResendingOtp] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
   const otpInputRefs = useRef([]);
 
   // Timer effect
@@ -62,7 +65,7 @@ const Contact = () => {
     const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
     setGeneratedOtp(newOtp);
 
-    // Set expiry time (15 minutes from now)
+    // Set expiry time (5 minutes from now)
     const expiryTime = new Date();
     expiryTime.setMinutes(expiryTime.getMinutes() + 5);
     setOtpExpiry(expiryTime);
@@ -74,7 +77,7 @@ const Contact = () => {
   };
 
   // Show OTP popup and generate OTP
-  const showOtpModal = (email) => {
+  const showOtpModal = async (email) => {
     const newOtp = generateOtp();
     setShowOtpPopup(true);
     setOtpVerified(false);
@@ -88,18 +91,25 @@ const Contact = () => {
       }
     }, 100);
 
-    // In a real application, you would send the OTP to the user's email here
-    console.log("Generated OTP:", newOtp);
-    emailjs.send("service_emks25r", "template_h8r9vlo", {
-      passcode: newOtp,
-      email: email,
-    } , "HiT1qgF3NG4BIwyQY")
-    .then((response) => {
-    console.log("✅ OTP sent successfully!", response.status, response.text);
-  })
-  .catch((err) => {
-    console.error("❌ Failed to send OTP:", err);
-  });
+    // Send OTP via email
+    setIsResendingOtp(true);
+    try {
+      await emailjs.send(
+        "service_emks25r", 
+        "template_h8r9vlo", 
+        {
+          passcode: newOtp,
+          email: email,
+        }, 
+        "HiT1qgF3NG4BIwyQY"
+      );
+      console.log("✅ OTP sent successfully!");
+    } catch (err) {
+      console.error("❌ Failed to send OTP:", err);
+      setOtpError("Failed to send OTP. Please try again.");
+    } finally {
+      setIsResendingOtp(false);
+    }
   };
 
   // Handle OTP input change
@@ -142,14 +152,25 @@ const Contact = () => {
   };
 
   // Verify OTP
-  const verifyOtp = () => {
+  const verifyOtp = async () => {
     const enteredOtp = otp.join("");
+    
+    // Check if all OTP digits are entered
+    if (enteredOtp.length !== 6) {
+      setOtpError("Please enter all 6 digits");
+      return;
+    }
 
     // Check if OTP is expired
     if (timeLeft <= 0) {
       setOtpError("OTP has expired. Please request a new one.");
       return;
     }
+
+    setIsVerifyingOtp(true);
+
+    // Simulate network delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 800));
 
     // Check if OTP matches
     if (enteredOtp === generatedOtp) {
@@ -164,19 +185,37 @@ const Contact = () => {
     } else {
       setOtpError("Invalid OTP. Please try again.");
     }
+    
+    setIsVerifyingOtp(false);
   };
 
   // Resend OTP
-  const resendOtp = () => {
-    generateOtp();
+  const resendOtp = async () => {
+    const newOtp = generateOtp();
     setOtp(["", "", "", "", "", ""]);
     setOtpError("");
     if (otpInputRefs.current[0]) {
       otpInputRefs.current[0].focus();
     }
 
-    // In a real application, you would resend the OTP to the user's email here
-    console.log("Resent OTP:", generatedOtp);
+    setIsResendingOtp(true);
+    try {
+      await emailjs.send(
+        "service_emks25r", 
+        "template_h8r9vlo", 
+        {
+          passcode: newOtp,
+          email: formData.email,
+        }, 
+        "HiT1qgF3NG4BIwyQY"
+      );
+      console.log("✅ OTP resent successfully!");
+    } catch (err) {
+      console.error("❌ Failed to resend OTP:", err);
+      setOtpError("Failed to resend OTP. Please try again.");
+    } finally {
+      setIsResendingOtp(false);
+    }
   };
 
   const validateEmail = async (email) => {
@@ -240,9 +279,9 @@ const Contact = () => {
 
     // Basic validation
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";  setFormStatus({ submitting: false, submitted: false, error: null });;
-    if (!formData.email.trim()) newErrors.email = "Email is required";   setFormStatus({ submitting: false, submitted: false, error: null });;
-    if (!formData.message.trim()) newErrors.message = "Message is required";   setFormStatus({ submitting: false, submitted: false, error: null });;
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -252,11 +291,10 @@ const Contact = () => {
     // Email validation
     const isValidEmail = await validateEmail(formData.email);
     if (!isValidEmail) {
-      setFormStatus({ submitting: false, submitted: false, error: null });
       setErrors({ email: "Please enter a valid email address" });
       return;
     }
-    
+
     showOtpModal(formData.email);
   };
 
@@ -327,7 +365,7 @@ const Contact = () => {
       width: "100%",
     },
     sectionTitle: {
-      fontSize: "3rem",
+      fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
       fontWeight: "800",
       textAlign: "center",
       marginBottom: "3rem",
@@ -365,7 +403,7 @@ const Contact = () => {
     contactCard: {
       background: "rgba(30, 41, 59, 0.8)",
       borderRadius: "24px",
-      padding: "3rem",
+      padding: "clamp(2rem, 5vw, 3rem)",
       backdropFilter: "blur(12px)",
       border: "1px solid rgba(99, 102, 241, 0.3)",
       boxShadow: "0 25px 50px rgba(0, 0, 0, 0.25)",
@@ -509,6 +547,7 @@ const Contact = () => {
       color: "#10b981",
       marginBottom: "2rem",
       filter: "drop-shadow(0 5px 15px rgba(16, 185, 129, 0.4))",
+      animation: "scale 0.5s ease, float 3s ease-in-out infinite",
     },
     successTitle: {
       fontSize: "2.25rem",
@@ -568,6 +607,19 @@ const Contact = () => {
       bottom: "-100px",
       left: "-100px",
       zIndex: "0",
+    },
+    skeleton: {
+      background: "linear-gradient(90deg, rgba(30, 41, 59, 0.4) 25%, rgba(30, 41, 59, 0.6) 50%, rgba(30, 41, 59, 0.4) 75%)",
+      backgroundSize: "200% 100%",
+      animation: "loading 1.5s infinite",
+      borderRadius: "16px",
+    },
+    skeletonInput: {
+      height: "56px",
+      marginBottom: "2rem",
+    },
+    skeletonButton: {
+      height: "60px",
     },
   };
 
@@ -670,6 +722,10 @@ const Contact = () => {
       cursor: "pointer",
       transition: "all 0.3s ease",
       marginBottom: "1rem",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "0.5rem",
     },
     verifyButtonHover: {
       transform: "translateY(-2px)",
@@ -677,6 +733,10 @@ const Contact = () => {
     },
     verifyButtonActive: {
       transform: "translateY(0)",
+    },
+    verifyButtonDisabled: {
+      opacity: "0.7",
+      cursor: "not-allowed",
     },
     resendButton: {
       background: "none",
@@ -686,9 +746,18 @@ const Contact = () => {
       fontSize: "0.9rem",
       textDecoration: "underline",
       transition: "all 0.3s ease",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "0.5rem",
+      margin: "0 auto",
     },
     resendButtonHover: {
       color: "#6366f1",
+    },
+    resendButtonDisabled: {
+      opacity: "0.7",
+      cursor: "not-allowed",
     },
     errorText: {
       color: "#ef4444",
@@ -741,7 +810,15 @@ const Contact = () => {
               <div style={styles.decorativeElement}></div>
               <div style={styles.decorativeElement2}></div>
 
-              {formStatus.submitted ? (
+              {formStatus.submitting && !showOtpPopup ? (
+                // Loading skeleton
+                <div>
+                  <div style={{...styles.skeleton, ...styles.skeletonInput}}></div>
+                  <div style={{...styles.skeleton, ...styles.skeletonInput}}></div>
+                  <div style={{...styles.skeleton, ...styles.skeletonInput, minHeight: "150px"}}></div>
+                  <div style={{...styles.skeleton, ...styles.skeletonButton}}></div>
+                </div>
+              ) : formStatus.submitted ? (
                 <div style={styles.successCard}>
                   <FontAwesomeIcon
                     icon={faCheckCircle}
@@ -993,6 +1070,7 @@ const Contact = () => {
                 e.target.style.backgroundColor = "";
                 e.target.style.color = otpPopupStyles.closeButton.color;
               }}
+              disabled={isVerifyingOtp || otpVerified}
             >
               <FontAwesomeIcon icon={faTimes} />
             </button>
@@ -1006,6 +1084,7 @@ const Contact = () => {
 
             {otpVerified ? (
               <div style={otpPopupStyles.successText}>
+                <FontAwesomeIcon icon={faCheckCircle} style={{marginRight: "0.5rem"}} />
                 Verification successful! Submitting your message...
               </div>
             ) : (
@@ -1038,7 +1117,7 @@ const Contact = () => {
                         ...otpPopupStyles.otpInput,
                         ...(digit ? otpPopupStyles.otpInputFocus : {}),
                       }}
-                      disabled={timeLeft <= 0}
+                      disabled={timeLeft <= 0 || isVerifyingOtp}
                     />
                   ))}
                 </div>
@@ -1048,44 +1127,77 @@ const Contact = () => {
                 )}
 
                 <button
-                  style={otpPopupStyles.verifyButton}
+                  style={{
+                    ...otpPopupStyles.verifyButton,
+                    ...(timeLeft <= 0 || isVerifyingOtp
+                      ? otpPopupStyles.verifyButtonDisabled
+                      : {}),
+                  }}
                   onClick={verifyOtp}
                   onMouseEnter={(e) => {
-                    e.target.style.transform =
-                      otpPopupStyles.verifyButtonHover.transform;
-                    e.target.style.boxShadow =
-                      otpPopupStyles.verifyButtonHover.boxShadow;
+                    if (timeLeft > 0 && !isVerifyingOtp) {
+                      e.target.style.transform =
+                        otpPopupStyles.verifyButtonHover.transform;
+                      e.target.style.boxShadow =
+                        otpPopupStyles.verifyButtonHover.boxShadow;
+                    }
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = "";
                     e.target.style.boxShadow = "";
                   }}
                   onMouseDown={(e) => {
-                    e.target.style.transform =
-                      otpPopupStyles.verifyButtonActive.transform;
+                    if (timeLeft > 0 && !isVerifyingOtp) {
+                      e.target.style.transform =
+                        otpPopupStyles.verifyButtonActive.transform;
+                    }
                   }}
                   onMouseUp={(e) => {
-                    e.target.style.transform =
-                      otpPopupStyles.verifyButtonHover.transform;
+                    if (timeLeft > 0 && !isVerifyingOtp) {
+                      e.target.style.transform =
+                        otpPopupStyles.verifyButtonHover.transform;
+                    }
                   }}
-                  disabled={timeLeft <= 0}
+                  disabled={timeLeft <= 0 || isVerifyingOtp}
                 >
-                  Verify OTP
+                  {isVerifyingOtp ? (
+                    <>
+                      <FontAwesomeIcon icon={faSpinner} spin />
+                      Verifying...
+                    </>
+                  ) : (
+                    "Verify OTP"
+                  )}
                 </button>
 
                 <div style={{ textAlign: "center" }}>
                   <button
-                    style={otpPopupStyles.resendButton}
+                    style={{
+                      ...otpPopupStyles.resendButton,
+                      ...(isResendingOtp
+                        ? otpPopupStyles.resendButtonDisabled
+                        : {}),
+                    }}
                     onClick={resendOtp}
                     onMouseEnter={(e) => {
-                      e.target.style.color =
-                        otpPopupStyles.resendButtonHover.color;
+                      if (!isResendingOtp) {
+                        e.target.style.color =
+                          otpPopupStyles.resendButtonHover.color;
+                      }
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.color = otpPopupStyles.resendButton.color;
                     }}
+                    disabled={isResendingOtp}
                   >
-                    Resend OTP
+                    {isResendingOtp ? (
+                      <>
+                        <FontAwesomeIcon icon={faSpinner} spin />
+                        Resending...
+                      </>
+                    ) : (
+                      "Resend OTP"
+                    )}
                   </button>
                 </div>
               </>
@@ -1109,14 +1221,20 @@ const Contact = () => {
           }
           
           @keyframes scale {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+            0% { transform: scale(0.9); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
           }
           
           @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
+          }
+          
+          @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
           }
           
           .gradient-text {
