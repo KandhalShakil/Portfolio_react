@@ -45,13 +45,6 @@ const certificatesData = [
     provider: 'Wayspire',
     directLink: 'https://drive.google.com/file/d/1gjw4euDn_6bJ16aXcIA2te8-NSo7lKld/view?usp=sharing', // No direct link available
   },
-  {
-    img: '/images/certificates/angular-basics.png',
-    title: 'Angular Basics',
-    link: 'https://simpli-web.app.link/e/B8pTGxDNUWb',
-    provider: 'Simplilearn',
-    directLink: 'https://simpli-web.app.link/e/B8pTGxDNUWb',
-  },
 ];
 
 const Certificates = () => {
@@ -132,18 +125,6 @@ const Certificates = () => {
       "Hello! Your expertise in prompt engineering is evident from your portfolio. Would you be able to email me the Wayspire certificate? I'm considering similar training.",
       "Hi there! I'm fascinated by your Prompt Engineering certification. Could you please send me the certificate details via email? It would be incredibly helpful for my research."
     ],
-    'Angular Basics': [
-      "Hello! Your Angular development certification is impressive. Could you please share the certificate via email? I'd love to see the Angular concepts covered in this Simplilearn course.",
-      "Hi there! I noticed your Angular Basics certification from Simplilearn. Would it be possible to receive a copy through email? It's exactly what I need to start with Angular!",
-      "Greetings! Your Angular certification caught my attention. I'm beginning Angular development and would appreciate the certificate details via email.",
-      "Hello! I'm currently exploring Angular framework. Your Simplilearn certificate looks comprehensive - could you please send it to me via email? I'd be grateful!",
-      "Hi! I'm impressed by your Angular skills showcased in this certification. Would you mind sharing the certificate through email? I'm very interested in Angular development.",
-      "Hello there! Your Angular Basics certification from Simplilearn is quite valuable. Could you please email me the certificate? I'm researching Angular learning paths.",
-      "Hi! I'm a front-end developer looking to learn Angular. Your certificate looks perfect for beginners - would it be possible to receive a copy via email? Thanks!",
-      "Greetings! Your Angular certification really stands out in your portfolio. Could you kindly share it through email? I'd love to see the Angular fundamentals covered.",
-      "Hello! Your expertise in Angular development is evident. Would you be able to email me the certificate? I'm planning to start learning Angular framework.",
-      "Hi there! I'm fascinated by your Angular certification. Could you please send me the certificate details via email? It would help me understand the Angular curriculum."
-    ]
   };
 
   // Function to scroll to contact section and fill message
