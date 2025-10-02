@@ -24,36 +24,35 @@ import {
 
 const skillsData = {
   'Frontend Development': [
-    { icon: faHtml5, name: 'HTML', color: '#E34F26', level: 95, description: 'Semantic markup & modern standards' },
-    { icon: faCss3Alt, name: 'CSS', color: '#1572B6', level: 90, description: 'Advanced styling & animations' },
-    { icon: faJs, name: 'JavaScript', color: '#F7DF1E', level: 88, description: 'ES6+ & modern frameworks' },
-    { icon: faReact, name: 'React', color: '#61DAFB', level: 85, description: 'Hooks, Context & performance' },
-    { icon: faAngular, name: 'Angular Basics', color: '#DD0031', level: 50, description: 'Components & services' },
+    { icon: faHtml5, name: 'HTML', color: '#E34F26', description: 'Semantic markup & modern standards' },
+    { icon: faCss3Alt, name: 'CSS', color: '#1572B6', description: 'Advanced styling & animations' },
+    { icon: faJs, name: 'JavaScript', color: '#F7DF1E', description: 'ES6+ & modern frameworks' },
+    { icon: faReact, name: 'React', color: '#61DAFB', description: 'Hooks, Context & performance' },
+    { icon: faAngular, name: 'Angular Basics', color: '#DD0031', description: 'Components & services' },
   ],
   'Backend Development': [
-    { icon: faNodeJs, name: 'Node.js', color: '#339933', level: 82, description: 'Server-side JavaScript runtime' },
-    { icon: faPython, name: 'Python', color: '#3776AB', level: 83, description: 'NumPy, Pandas, Django expertise' },
-    { icon: faJava, name: 'Java', color: '#007396', level: 85, description: 'OOP & enterprise applications' },
-    { icon: faServer, name: 'Data Structures', color: '#4338CA', level: 80, description: 'Algorithms & optimization' },
+    { icon: faNodeJs, name: 'Node.js', color: '#339933', description: 'Server-side JavaScript runtime' },
+    { icon: faPython, name: 'Python', color: '#3776AB', description: 'NumPy, Pandas, Django expertise' },
+    { icon: faJava, name: 'Java', color: '#007396', description: 'OOP & enterprise applications' },
+    { icon: faServer, name: 'Data Structures', color: '#4338CA', description: 'Algorithms & optimization' },
   ],
   'Database & Storage': [
-    { icon: faDatabase, name: 'MongoDB', color: '#47A248', level: 75, description: 'NoSQL document database' },
-    { icon: faDatabase, name: 'SQL', color: '#336791', level: 70, description: 'Relational database management' },
+    { icon: faDatabase, name: 'MongoDB', color: '#47A248', description: 'NoSQL document database' },
+    { icon: faDatabase, name: 'SQL', color: '#336791', description: 'Relational database management' },
   ],
   'AI & Modern Tech': [
-    { icon: faBrain, name: 'Prompt Engineering', color: '#8B5CF6', level: 85, description: 'AI optimization & fine-tuning' },
-    { icon: faRobot, name: 'AI Chatbot Utilization', color: '#10B981', level: 88, description: 'ChatGPT, Bard & AI tools' },
+    { icon: faBrain, name: 'Prompt Engineering', color: '#8B5CF6', description: 'AI optimization & fine-tuning' },
+    { icon: faRobot, name: 'AI Chatbot Utilization', color: '#10B981', description: 'ChatGPT, Bard & AI tools' },
   ],
   'Soft Skills': [
-    { icon: faUsers, name: 'Team Work', color: '#F59E0B', level: 95, description: 'Collaborative development' },
-    { icon: faChartLine, name: 'Team Management', color: '#EF4444', level: 85, description: 'Leadership & project coordination' },
+    { icon: faUsers, name: 'Team Work', color: '#F59E0B', description: 'Collaborative development' },
+    { icon: faChartLine, name: 'Team Management', color: '#EF4444', description: 'Leadership & project coordination' },
   ]
 };
 
 const Skills = () => {
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [activeCategory, setActiveCategory] = useState(Object.keys(skillsData)[0]);
-  const [animatedLevels, setAnimatedLevels] = useState({});
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
   // Calculate dynamic heights based on skills count in each category
@@ -76,22 +75,7 @@ const Skills = () => {
     return 'repeat(auto-fit, minmax(320px, 1fr))';
   };
 
-  useEffect(() => {
-    // Animate skill levels when component mounts or category changes
-    const timer = setTimeout(() => {
-      const newAnimatedLevels = {};
-      skillsData[activeCategory]?.forEach((skill, index) => {
-        setTimeout(() => {
-          setAnimatedLevels(prev => ({
-            ...prev,
-            [`${activeCategory}-${index}`]: skill.level
-          }));
-        }, index * 200);
-      });
-    }, 300);
 
-    return () => clearTimeout(timer);
-  }, [activeCategory]);
 
   // Modern styles with enhanced design system
   const styles = {
@@ -237,40 +221,11 @@ const Skills = () => {
       fontWeight: '600',
       margin: 0,
     },
-    skillLevel: {
-      color: 'rgba(255, 255, 255, 0.8)',
-      fontSize: '0.9rem',
-      fontWeight: '600',
-    },
     skillDescription: {
       color: 'rgba(255, 255, 255, 0.6)',
       fontSize: '0.85rem',
       marginBottom: '1rem',
       lineHeight: 1.4,
-    },
-    progressBar: {
-      height: '6px',
-      background: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '10px',
-      overflow: 'hidden',
-      position: 'relative',
-    },
-    progressFill: {
-      height: '100%',
-      borderRadius: '10px',
-      transition: 'width 1s cubic-bezier(0.4, 0, 0.2, 1)',
-      position: 'relative',
-      overflow: 'hidden',
-    },
-    progressGlow: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      width: '20px',
-      height: '100%',
-      background: 'rgba(255, 255, 255, 0.3)',
-      filter: 'blur(3px)',
-      animation: 'progressShine 2s infinite',
     },
     backgroundElements: {
       position: 'absolute',
@@ -547,23 +502,9 @@ const Skills = () => {
                 <div style={styles.skillContent}>
                   <div style={styles.skillHeader}>
                     <h3 style={styles.skillName}>{skill.name}</h3>
-                    <span style={styles.skillLevel}>{skill.level}%</span>
                   </div>
                   
                   <p style={styles.skillDescription}>{skill.description}</p>
-                  
-                  {/* Progress Bar */}
-                  <div style={styles.progressBar}>
-                    <div
-                      style={{
-                        ...styles.progressFill,
-                        width: `${animatedLevels[`${activeCategory}-${index}`] || 0}%`,
-                        background: `linear-gradient(90deg, ${skill.color} 0%, ${skill.color}aa 100%)`,
-                      }}
-                    >
-                      <div style={styles.progressGlow}></div>
-                    </div>
-                  </div>
                 </div>
               </div>
             ))}
@@ -579,12 +520,6 @@ const Skills = () => {
             33% { transform: translateY(-15px) rotate(2deg); }
             66% { transform: translateY(-5px) rotate(-1deg); }
             100% { transform: translateY(0px) rotate(0deg); }
-          }
-          
-          @keyframes progressShine {
-            0% { transform: translateX(-100%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(300%); opacity: 0; }
           }
           
           @keyframes slideIn {
