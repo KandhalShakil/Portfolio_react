@@ -28,12 +28,11 @@ const skillsData = {
     { icon: faCss3Alt, name: 'CSS', color: '#1572B6', description: 'Advanced styling & animations' },
     { icon: faJs, name: 'JavaScript', color: '#F7DF1E', description: 'ES6+ & modern frameworks' },
     { icon: faReact, name: 'React', color: '#61DAFB', description: 'Hooks, Context & performance' },
-    { icon: faAngular, name: 'Angular Basics', color: '#DD0031', description: 'Components & services' },
   ],
   'Backend Development': [
     { icon: faNodeJs, name: 'Node.js', color: '#339933', description: 'Server-side JavaScript runtime' },
     { icon: faPython, name: 'Python', color: '#3776AB', description: 'NumPy, Pandas, Django expertise' },
-    { icon: faJava, name: 'Java', color: '#007396', description: 'OOP & enterprise applications' },
+    { icon: faJava, name: 'Java', color: '#007396', description: 'OOPs & DS' },
     { icon: faServer, name: 'Data Structures', color: '#4338CA', description: 'Algorithms & optimization' },
   ],
   'Database & Storage': [
