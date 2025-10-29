@@ -753,7 +753,7 @@ const Hero = () => {
                   <div style={styles.profileImageWrapper}>
                     <div style={styles.profileImage}>
                       <img 
-                        src="/images/profile.jpg" 
+                        src="pic.jpg" 
                         alt="Kandhal Shakil" 
                         style={{width: '100%', height: '100%', borderRadius: '50%'}}
                       />
