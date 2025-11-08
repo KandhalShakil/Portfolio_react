@@ -1,6 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "portfolio",
+  "name": "portfolio-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,44 +11,25 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "emailjs-com": "^3.2.0",
-    "framer-motion": "^12.23.24",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-icons": "^5.5.0",
-    "react-scripts": "5.0.1",
-=======
-  "name": "portfolio-react",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.0.0",
-    "@fortawesome/free-brands-svg-icons": "^7.0.1",
-    "@fortawesome/free-solid-svg-icons": "^7.0.1",
-    "@fortawesome/react-fontawesome": "^3.0.2",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
     "@tsparticles/react": "^3.0.0",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.8",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "emailjs-com": "^3.2.0",
-    "framer-motion": "^12.23.12",
+    "framer-motion": "^12.23.24",
     "lucide-react": "^0.541.0",
     "node-fetch": "^3.3.2",
     "nodemailer": "^7.0.5",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.8.2",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.9.3",
     "react-typed": "^2.0.12",
     "tsparticles": "^3.9.1",
     "typed.js": "^2.1.0",
->>>>>>> 3853bce4e82a9ecac5ee5dbaade27d8167a64c80
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -75,13 +55,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-<<<<<<< HEAD
-=======
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17"
->>>>>>> 3853bce4e82a9ecac5ee5dbaade27d8167a64c80
   }
 }
