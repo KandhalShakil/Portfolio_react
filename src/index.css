@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -37,3 +38,61 @@ a {
 button {
   font-family: inherit;
 }
+=======
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-color: #64ffda;
+    --secondary-color: #112240;
+    --background-color: #0a192f;
+    --text-color: #ffffff;
+    --highlight-color: #233554;
+    --card-color: rgba(17, 34, 64, 0.7);
+  }
+
+  .light-theme {
+    --primary-color: #0a192f;
+    --secondary-color: #f0f0f0;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --highlight-color: #e0e0e0;
+    --card-color: rgba(240, 240, 240, 0.8);
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+@layer components {
+  .skill-bar {
+    @apply h-1.5 bg-white bg-opacity-10 rounded-full mt-2.5 overflow-hidden;
+  }
+  
+  .skill-progress {
+    @apply h-full bg-primary rounded-full;
+  }
+  
+  .hire-btn {
+    @apply bg-gradient-to-r from-primary to-cyan-500 text-secondary py-4 px-10 rounded-full font-semibold relative overflow-hidden transition-all duration-300 border-none no-underline m-2 z-10 translate-y-0 shadow-lg hover:-translate-y-1 hover:shadow-xl;
+  }
+  
+  .section-title {
+    @apply text-4xl text-primary relative inline-block mb-12;
+  }
+  
+  .section-title::after {
+    content: "";
+    @apply w-3/5 h-1 bg-primary absolute -bottom-4 left-0 transition-width duration-300;
+  }
+}
+>>>>>>> 3853bce4e82a9ecac5ee5dbaade27d8167a64c80
