@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import './App.css';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Design from './components/Design';
-import Achievements from './components/Achievements';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-
-function App() {
-  return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Education />
-      <Design />
-      <Achievements />
-      <Contact />
-      <Footer />
-=======
 import React, { useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -112,7 +84,6 @@ function App() {
       </main>
       <Footer />
       <BackToTop />
->>>>>>> 3853bce4e82a9ecac5ee5dbaade27d8167a64c80
     </div>
   );
 }
