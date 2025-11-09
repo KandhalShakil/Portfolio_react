@@ -74,7 +74,7 @@ npm install
 npm start
 ```
 
-4. Open [http://shakil-kandhal-portfolio.vercel.app](http://shakil-kandhal-portfolio.vercel.app) to view it in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### Build for Production
 
