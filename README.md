@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🚀 Kandhal Shakil - Portfolio Website
 
 A modern, minimal, and visually striking personal portfolio website showcasing web development and UI/UX design work.
@@ -75,7 +74,7 @@ npm install
 npm start
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. Open [http://shakil-kandhal-portfolio.vercel.app](http://shakil-kandhal-portfolio.vercel.app) to view it in your browser.
 
 ### Build for Production
 
@@ -401,4 +400,3 @@ Portfolio_react/
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
->>>>>>> 3853bce4e82a9ecac5ee5dbaade27d8167a64c80
