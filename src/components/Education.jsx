@@ -26,7 +26,7 @@ const Education = () => {
     },
     {
       year: '2023',
-      title: 'Started B.E in CSE',
+      title: 'Started B.E in CST',
       subtitle: 'Lok Jagruti Kendra University',
       description: 'Computer Science & Technology',
       icon: faGraduationCap,
