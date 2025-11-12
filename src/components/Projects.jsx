@@ -7,7 +7,7 @@ const Projects = () => {
   const featuredProject = {
     title: 'Personal Portfolio',
     description: 'A React.js-powered portfolio website highlighting projects, technical expertise, and personal achievements. Styled with styled-components, it reflects professionalism through modern UI design, responsiveness, and clear project presentation.',
-    image: 'https://raw.githubusercontent.com/KandhalShakil/Portfolio_react/main/public/pic.jpg',
+    image: 'pic.jpg',
     tags: ['React', 'Styled Components', 'Responsive Design', 'Framer Motion'],
     liveLink: 'https://shakil-kandhal-portfolio.vercel.app/',
     codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
