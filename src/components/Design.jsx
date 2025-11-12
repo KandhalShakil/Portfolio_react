@@ -8,11 +8,20 @@ const Design = () => {
     {
       id: 1,
       title: 'Food Delivery App UI',
-      category: 'Mobile App Design',
+      category: 'App Design',
       description: 'A modern and intuitive food delivery application with seamless user experience, featuring restaurant browsing, cart management, and order tracking.',
       link: 'https://carry-math-46881211.figma.site',
       tools: ['Figma', 'UI/UX Design', 'Mobile First'],
       image: '🍔'
+    },
+    {
+      id: 2,
+      title: 'Personal Finance App UI',
+      category: 'App Design',
+      description: 'A comprehensive personal finance management application designed to help users track expenses, manage budgets, and achieve their financial goals with an intuitive and elegant interface.',
+      link: 'https://sheep-cloak-58127813.figma.site',
+      tools: ['Figma', 'UI/UX Design', 'Finance'],
+      image: '💰'
     }
   ];
 
