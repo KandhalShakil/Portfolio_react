@@ -91,42 +91,48 @@ const Achievements = () => {
       provider: 'Coursera',
       year: '2024',
       icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/TUX8P7X8ELQD'
+      link: 'https://coursera.org/verify/TUX8P7X8ELQD',
+      image: '/images/certificates/Introduction to Java.png'
     },
     {
       name: 'Inheritance and Data Structures in Java',
       provider: 'Coursera',
       year: '2024',
       icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/H8XTMHMZSYZX'
+      link: 'https://coursera.org/verify/H8XTMHMZSYZX',
+      image: '/images/certificates/Inheritance and Data Structures in Java.png'
     },
     {
       name: 'Introduction to HTML, CSS, & JavaScript',
       provider: 'Coursera',
       year: '2024',
       icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/2MWVBEWX2M8N'
+      link: 'https://coursera.org/verify/2MWVBEWX2M8N',
+      image: '/images/certificates/Introduction to HTML, CSS, & JavaScript.png'
     },
     {
       name: 'Exploratory Data Analysis for Machine Learning',
       provider: 'Coursera',
       year: '2024',
       icon: <SiCoursera />,
-      link: 'https://www.coursera.org/account/accomplishments/verify/NBH6CSAM16MD'
+      link: 'https://www.coursera.org/account/accomplishments/verify/NBH6CSAM16MD',
+      image: '/images/certificates/Exploratory Data Analysis for Machine Learning.png'
     },
     {
       name: 'Developing Front-End Apps with React',
       provider: 'Coursera',
       year: '2024',
       icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/0178B60775HH'
+      link: 'https://coursera.org/verify/0178B60775HH',
+      image: '/images/certificates/Developing Front-End Apps with React.png'
     },
     {
       name: 'Prompt Engineering: The Skill of Asking AI Right',
       provider: 'Wayspire',
       year: '2024',
       icon: <FaCertificate />,
-      link: 'https://drive.google.com/file/d/1gjw4euDn_6bJ16aXcIA2te8-NSo7lKld/view?usp=sharing'
+      link: 'https://drive.google.com/file/d/1gjw4euDn_6bJ16aXcIA2te8-NSo7lKld/view?usp=sharing',
+      image: '/images/certificates/prompt_engg.png'
     }
   ];
 
@@ -156,9 +162,16 @@ const Achievements = () => {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <div className="cert-icon-wrapper">
-                <div className="cert-glow"></div>
-                <div className="cert-icon">{cert.icon}</div>
+              <div className="cert-image-wrapper">
+                <img 
+                  src={cert.image} 
+                  alt={`${cert.name} Certificate`} 
+                  className="cert-image"
+                  loading="lazy"
+                />
+                <div className="cert-overlay">
+                  <div className="cert-icon-large">{cert.icon}</div>
+                </div>
               </div>
               <div className="cert-content">
                 <h3 className="cert-name">{cert.name}</h3>
