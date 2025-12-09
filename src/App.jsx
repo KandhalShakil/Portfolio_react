@@ -1,29 +1,44 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import './App.css';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
-import About from './components/About.jsx';
-import Skills from './components/Skills.jsx';
-import Projects from './components/Projects.jsx';
-import Education from './components/Education.jsx';
-import Design from './components/Design.jsx';
-import Achievements from './components/Achievements.jsx';
-import Contact from './components/Contact.jsx';
-import Footer from './components/Footer.jsx';
+
+// Lazy load components that are below the fold
+const About = lazy(() => import('./components/About.jsx'));
+const Skills = lazy(() => import('./components/Skills.jsx'));
+const Projects = lazy(() => import('./components/Projects.jsx'));
+const Education = lazy(() => import('./components/Education.jsx'));
+const Achievements = lazy(() => import('./components/Achievements.jsx'));
+const Contact = lazy(() => import('./components/Contact.jsx'));
+const Footer = lazy(() => import('./components/Footer.jsx'));
+
+// Loading component
+const LoadingSpinner = () => (
+  <div style={{ 
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    minHeight: '200px',
+    color: '#00FF99'
+  }}>
+    <div>Loading...</div>
+  </div>
+);
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Education />
-      <Design />
-      <Achievements />
-      <Contact />
-      <Footer />
+      <Suspense fallback={<LoadingSpinner />}>
+        <About />
+        <Skills />
+        <Projects />
+        <Education />
+        <Achievements />
+        <Contact />
+        <Footer />
+      </Suspense>
     </div>
   );
 }

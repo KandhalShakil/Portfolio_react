@@ -23,20 +23,20 @@ const Projects = () => {
       codeLink: 'https://github.com/KandhalShakil/Sky_Event'
     },
     {
-      title: 'Tic Tac Toe',
-      description: 'A timeless Tic-Tac-Toe game with responsive design that preserves simplicity of traditional gameplay.',
-      image: 'https://img.freepik.com/premium-vector/tic-tac-toe-logo-icon_1076610-87173.jpg',
-      tags: ['HTML', 'CSS', 'JavaScript', 'Game'],
-      liveLink: 'https://tic-tac-toe-game-cyan-five.vercel.app/',
-      codeLink: 'https://github.com/KandhalShakil/TIC-TAC-TOE-GAME'
-    },
-    {
       title: 'Tic Tac Toe Game Using React',
       description: 'Advanced Tic-Tac-Toe game built with React.js and Node.js, featuring AI opponents and authentication.',
       image: 'https://github.com/KandhalShakil/Tic-tac-toe-react/blob/main/public/Game.jpg?raw=true',
       tags: ['React', 'Node.js', 'AI', 'Dark Mode'],
       liveLink: 'https://kandhal-shakil-game.vercel.app/',
       codeLink: 'https://github.com/KandhalShakil/Tic-tac-toe-react'
+    },
+    {
+      title: 'Kandhal Invoice System',
+      description: 'A comprehensive invoice management system built with modern web technologies. Features invoice creation, PDF generation, client management, and real-time data tracking for efficient business operations.',
+      image: 'https://github.com/KandhalShakil/Invoice_system/blob/main/static/pic.png?raw=true',
+      tags: ['Python', 'HTML', 'PDF Generation', 'JavaScript'],
+      liveLink: 'https://kandhal-invoice-system.vercel.app',
+      codeLink: 'https://github.com/KandhalShakil/Invoice_system'
     },
     {
       title: 'More Projects',

@@ -41,9 +41,9 @@ const About = () => {
       position: 'absolute',
       width: '100%',
       height: '100%',
-      background: 'linear-gradient(135deg, rgba(0, 255, 153, 0.3), rgba(0, 191, 255, 0.3))',
+      background: 'linear-gradient(135deg, rgba(0, 255, 153, 0.1), rgba(0, 191, 255, 0.1))',
       borderRadius: '50%',
-      filter: 'blur(40px)',
+      filter: 'blur(20px)',
       zIndex: 0,
       animation: 'pulse 3s ease-in-out infinite',
     },
@@ -54,7 +54,7 @@ const About = () => {
       borderRadius: '50%',
       padding: '4px',
       background: 'linear-gradient(135deg, #00FF99, #00BFFF)',
-      boxShadow: '0 0 40px rgba(0, 255, 153, 0.4)',
+      boxShadow: '0 0 20px rgba(0, 255, 153, 0.2)',
       overflow: 'hidden',
     },
     profileImage: {
@@ -163,6 +163,7 @@ const About = () => {
                 src="/profile.jpg" 
                 alt="Kandhal Shakil - Profile" 
                 style={styles.profileImage}
+                loading="lazy"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';
