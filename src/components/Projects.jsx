@@ -24,7 +24,7 @@ const Projects = () => {
     },
     {
       title: 'Tic Tac Toe Game Using React',
-      description: 'Advanced Tic-Tac-Toe game built with React.js and Node.js, featuring AI opponents and authentication.',
+      description: 'Full-stack web game using React, Flask, MongoDB, JWT auth, multiple game modes (PvP + AI), real-time play, player stats, and leaderboard.',
       image: 'https://github.com/KandhalShakil/Tic-tac-toe-react/blob/main/public/Game.jpg?raw=true',
       tags: ['React', 'Node.js', 'AI', 'Dark Mode'],
       liveLink: 'https://kandhal-shakil-game.vercel.app/',
