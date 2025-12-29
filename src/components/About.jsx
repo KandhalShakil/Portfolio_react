@@ -184,15 +184,15 @@ const About = () => {
           >
             <h2 style={styles.sectionTitle}>About Me</h2>
             <p style={styles.aboutText}>
-              I'm Kandhal Shakil, a passionate Web Developer and UI/UX Designer who loves 
-              creating beautiful, functional digital experiences. With a strong foundation in 
-              both frontend and backend development, I bring designs to life with clean code 
-              and attention to detail.
+              I'm Kandhal Shakil, a passionate Python Developer who loves 
+              creating robust, scalable applications and solving complex problems through code. 
+              With a strong foundation in Python development, I build efficient solutions 
+              with clean code and attention to detail.
             </p>
             <p style={styles.aboutText}>
-              My journey combines technical expertise with creative problem-solving. I believe 
-              great design should be both aesthetically pleasing and highly functional, creating 
-              seamless experiences that users love.
+              My journey combines technical expertise with analytical problem-solving. I believe 
+              great software should be both powerful and maintainable, creating reliable systems 
+              that deliver exceptional performance and user experiences.
             </p>
             
             <div style={styles.statsGrid}>

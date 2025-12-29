@@ -27,7 +27,7 @@ const Hero = () => {
         >
           <p className="hero-greeting">Hey, I'm</p>
           <h1 className="hero-name">Kandhal Shakil</h1>
-          <h2 className="hero-title">Web Developer & UI/UX Designer</h2>
+          <h2 className="hero-title">Python Developer</h2>
           <p className="hero-description">
             I build visually creative and technically strong digital experiences.
           </p>
@@ -60,7 +60,7 @@ const Hero = () => {
                 <div className="code-content">
                   <p><span className="keyword">const</span> <span className="variable">developer</span> = &#123;</p>
                   <p>&nbsp;&nbsp;name: <span className="string">"Kandhal Shakil"</span>,</p>
-                  <p>&nbsp;&nbsp;skills: [<span className="string">"React"</span>, <span className="string">"Django"</span>, <span className="string">"UI/UX"</span>],</p>
+                  <p>&nbsp;&nbsp;skills: [<span className="string">"Python"</span>, <span className="string">"Django"</span>, <span className="string">"Backend"</span>],</p>
                   <p>&nbsp;&nbsp;passion: <span className="string">"Creating"</span></p>
                   <p>&#125;;</p>
                 </div>

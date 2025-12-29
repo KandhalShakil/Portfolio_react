@@ -1,6 +1,6 @@
 # 🚀 Kandhal Shakil - Portfolio Website
 
-A modern, minimal, and visually striking personal portfolio website showcasing web development and UI/UX design work.
+A modern, minimal, and visually striking personal portfolio website showcasing Python development and software engineering work.
 
 ![Portfolio Preview](https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-Latest-FF0080?style=for-the-badge&logo=framer)
