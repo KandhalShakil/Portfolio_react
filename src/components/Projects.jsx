@@ -9,7 +9,7 @@ const Projects = () => {
     description: 'A React.js-powered portfolio website highlighting projects, technical expertise, and personal achievements. Styled with styled-components, it reflects professionalism through modern UI design, responsiveness, and clear project presentation.',
     image: 'https://github.com/KandhalShakil/Portfolio_react/blob/main/public/pic.jpg?raw=true',
     tags: ['React', 'Styled Components', 'Responsive Design', 'Framer Motion'],
-    liveLink: 'www.kandhal.tech',
+    liveLink: 'https://www.kandhal.tech',
     codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
   };
 
@@ -27,7 +27,7 @@ const Projects = () => {
       description: 'Full-stack web game using React, Flask, MongoDB, JWT auth, multiple game modes (PvP + AI), real-time play, player stats, and leaderboard.',
       image: 'https://github.com/KandhalShakil/Tic-tac-toe-react/blob/main/public/Game.jpg?raw=true',
       tags: ['React', 'Python', 'AI', 'Dark Mode'],
-      liveLink: 'www.game.kandhal.tech',
+      liveLink: 'https://www.game.kandhal.tech',
       codeLink: 'https://github.com/KandhalShakil/Tic-tac-toe-react'
     },
     {
@@ -35,7 +35,7 @@ const Projects = () => {
       description: 'A comprehensive invoice management system built with modern web technologies. Features invoice creation, PDF generation, client management, and real-time data tracking for efficient business operations.',
       image: 'https://github.com/KandhalShakil/Invoice_system/blob/main/static/pic.png?raw=true',
       tags: ['Python', 'HTML', 'PDF Generation', 'JavaScript'],
-      liveLink: 'www.invoice.kandhal.tech',
+      liveLink: 'https://www.invoice.kandhal.tech',
       codeLink: 'https://github.com/KandhalShakil/Invoice_system'
     },
     {
