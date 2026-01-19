@@ -7,6 +7,7 @@ import Hero from './components/Hero.jsx';
 const Skills = lazy(() => import('./components/Skills.jsx'));
 const Projects = lazy(() => import('./components/Projects.jsx'));
 const Education = lazy(() => import('./components/Education.jsx'));
+const Achievements = lazy(() => import('./components/Achievements.jsx'));
 const About = lazy(() => import('./components/About.jsx'));
 const Contact = lazy(() => import('./components/Contact.jsx'));
 const Footer = lazy(() => import('./components/Footer.jsx'));
@@ -33,6 +34,7 @@ function App() {
         <About />
         <Skills />
         <Education />
+        <Achievements />
         <Projects />
         <Contact />
         <Footer />
