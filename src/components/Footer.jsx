@@ -22,6 +22,7 @@ const Footer = () => {
             <div className="footer-link-group">
               <h4>Connect</h4>
               <a href="#education">Experience</a>
+              <a href="#achievements">Achievements</a>
               <a href="#contact">Contact</a>
               <a href="mailto:kandhalshakil@gmail.com">Email</a>
             </div>
