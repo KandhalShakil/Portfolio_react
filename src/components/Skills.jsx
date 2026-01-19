@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReact, faNodeJs, faHtml5, faCss3Alt, faJs, faPython, faJava } from '@fortawesome/free-brands-svg-icons';
-import { faDatabase, faBrain, faUsers, faServer, faRobot, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faDatabase, faBrain, faUsers, faServer, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import './Skills.css';
 
 const Skills = () => {
