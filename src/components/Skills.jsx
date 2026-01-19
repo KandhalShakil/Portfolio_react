@@ -33,12 +33,11 @@ const Skills = () => {
       ]
     },
     {
-      title: 'AI & Soft Skills',
+      title: 'Tools',
       skills: [
-        { name: 'Prompt Engineering', icon: faBrain },
-        { name: 'AI Chatbot', icon: faRobot },
-        { name: 'Team Work', icon: faUsers },
-        { name: 'Team Management', icon: faChartLine }
+        { name: 'Git', icon: faBrain },
+        { name: 'VS Code', icon: faUsers },
+        { name: 'Postman', icon: faChartLine }
       ]
     }
   ];
@@ -55,8 +54,9 @@ const Skills = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          What I Work With
+          Skills
         </motion.h2>
+        <p className="section-subtitle">Technologies I work with</p>
         
         <div className="skills-grid">
           {skillCategories.map((category, categoryIndex) => (
@@ -67,22 +67,19 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              whileHover={{ scale: 1.03, rotateY: 5 }}
             >
               <h3 className="category-title">{category.title}</h3>
               <div className="skills-list">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div
+                  <div
                     key={skillIndex}
                     className="skill-item"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
                   >
                     <div className="skill-icon">
                       <FontAwesomeIcon icon={skill.icon} />
                     </div>
                     <span className="skill-name">{skill.name}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>

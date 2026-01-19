@@ -3,276 +3,163 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem 0;
-  background: rgba(13, 13, 13, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(120, 119, 198, 0.1);
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-  padding: 1rem 0;
-  background: rgba(13, 13, 13, 0.95);
-  box-shadow: 0 4px 20px rgba(0, 255, 153, 0.1);
+  background: rgba(10, 10, 15, 0.95);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .navbar-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 1.25rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.navbar-logo .logo-text {
+.navbar-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #00FF99, #00BFFF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
-.navbar-logo .logo-text:hover {
-  transform: scale(1.05);
+.logo-text {
+  cursor: pointer;
 }
 
-.navbar-menu {
+.desktop-menu {
   display: flex;
   list-style: none;
   gap: 2.5rem;
+  margin: 0;
+  padding: 0;
   align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
   margin: 0;
   padding: 0;
 }
 
-.navbar-menu li {
-  color: #E0E0E0;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.nav-item {
   position: relative;
-  letter-spacing: 0.5px;
 }
 
-.navbar-menu li:not(:last-child):hover {
-  color: #00FF99;
+.nav-link {
+  color: #a1a1aa;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  cursor: pointer;
 }
 
-.navbar-menu li:not(:last-child)::after {
+.nav-link:hover,
+.nav-link.active {
+  color: #fff;
+}
+
+.nav-link::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -4px;
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #00FF99, #00BFFF);
+  background: linear-gradient(135deg, #7877c6, #5856d6);
   transition: width 0.3s ease;
 }
 
-.navbar-menu li:not(:last-child):hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 
-.hire-btn {
-  padding: 0.7rem 1.8rem;
-  background: rgba(0, 255, 153, 0.1);
-  border: 2px solid #00FF99;
-  color: #00FF99;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.hire-btn:hover {
-  background: #00FF99;
-  color: #0D0D0D;
-  box-shadow: 0 0 25px rgba(0, 255, 153, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Hamburger Menu Button */
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  background: none;
+  gap: 4px;
+  background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1001;
-  transition: all 0.3s ease;
+  padding: 8px;
 }
 
 .hamburger span {
-  width: 28px;
-  height: 3px;
-  background: #00FF99;
-  border-radius: 3px;
+  width: 25px;
+  height: 2px;
+  background: #fff;
   transition: all 0.3s ease;
-  transform-origin: center;
-}
-
-.hamburger:hover span {
-  background: #00BFFF;
+  border-radius: 2px;
 }
 
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(8px, 8px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .hamburger.active span:nth-child(2) {
   opacity: 0;
-  transform: translateX(20px);
 }
 
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(8px, -8px);
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* Mobile Menu */
 .mobile-menu {
   position: fixed;
-  top: 0;
+  top: 70px;
   right: 0;
   width: 100%;
-  max-width: 350px;
-  height: 100vh;
-  background: linear-gradient(135deg, rgba(13, 13, 13, 0.98), rgba(20, 20, 20, 0.98));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 6rem 2rem 2rem;
-  box-shadow: -5px 0 30px rgba(0, 255, 153, 0.2);
-  border-left: 1px solid rgba(0, 255, 153, 0.2);
+  height: calc(100vh - 70px);
+  background: rgba(10, 10, 15, 0.98);
+  backdrop-filter: blur(12px);
   z-index: 999;
 }
 
 .mobile-menu-list {
   list-style: none;
-  padding: 0;
+  padding: 2rem;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .mobile-menu-list li {
-  color: #E0E0E0;
-  font-size: 1.3rem;
-  font-weight: 600;
+  color: #e4e4e7;
+  font-size: 1.25rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
   padding: 1rem;
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-}
-
-.mobile-menu-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  background: linear-gradient(180deg, #00FF99, #00BFFF);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-}
-
-.mobile-menu-list li:hover::before {
-  transform: scaleY(1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .mobile-menu-list li:hover {
-  color: #00FF99;
-  background: rgba(0, 255, 153, 0.05);
-  padding-left: 1.5rem;
+  background: rgba(88, 86, 214, 0.1);
+  color: #fff;
 }
 
-.hire-btn-mobile {
-  width: 100%;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #00FF99, #00BFFF);
-  border: none;
-  color: #0D0D0D;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  box-shadow: 0 5px 20px rgba(0, 255, 153, 0.3);
-}
-
-.hire-btn-mobile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 255, 153, 0.5);
-}
-
-.hire-btn-mobile:active {
-  transform: translateY(-1px);
-}
-
-/* Responsive Design */
+/* Mobile */
 @media (max-width: 768px) {
-  .navbar-container {
-    padding: 0 1.5rem;
-  }
-
-  .navbar-logo .logo-text {
-    font-size: 1.3rem;
-  }
-
   .desktop-menu {
     display: none;
   }
 
   .hamburger {
     display: flex;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .navbar-menu {
-    gap: 1.8rem;
-  }
-
-  .navbar-menu li {
-    font-size: 0.9rem;
-  }
-
-  .hire-btn {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar-container {
-    padding: 0 1rem;
-  }
-
-  .navbar-logo .logo-text {
-    font-size: 1.1rem;
-  }
-
-  .mobile-menu {
-    max-width: 100%;
-  }
-
-  .mobile-menu-list li {
-    font-size: 1.2rem;
-    padding: 0.8rem;
   }
 }

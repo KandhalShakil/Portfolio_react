@@ -1,0 +1,40 @@
+.about {
+  background: transparent;
+}
+
+.about-container {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-content {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(120, 119, 198, 0.1);
+  border-radius: 16px;
+  padding: 3rem;
+  transition: all 0.3s ease;
+}
+
+.about-content:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(88, 86, 214, 0.3);
+}
+
+.about-text {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #a1a1aa;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .about-content {
+    padding: 2rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
+  }
+}

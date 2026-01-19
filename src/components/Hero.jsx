@@ -13,60 +13,58 @@ const Hero = () => {
   return (
     <section className="hero" id="home">
       <div className="hero-background">
-        <div className="glow-orb orb-1"></div>
-        <div className="glow-orb orb-2"></div>
-        <div className="glow-orb orb-3"></div>
+        <div className="glow-orb glow-orb-1"></div>
+        <div className="glow-orb glow-orb-2"></div>
       </div>
       
       <div className="hero-container">
         <motion.div 
           className="hero-content"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          <p className="hero-greeting">Hey, I'm</p>
-          <h1 className="hero-name">Kandhal Shakil</h1>
-          <h2 className="hero-title">Python Developer</h2>
-          <p className="hero-description">
-            I build visually creative and technically strong digital experiences.
-          </p>
+          <motion.div
+            className="hero-label"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            👋 WELCOME TO MY PORTFOLIO
+          </motion.div>
           
-          <div className="hero-buttons">
-            <button className="btn-primary" onClick={() => scrollToSection('projects')}>
-              View My Work
+          <motion.h1 
+            className="hero-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            Hi, I'm <span className="hero-name">Kandhal Shakil</span>
+          </motion.h1>
+          
+          <motion.p 
+            className="hero-description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            A Python Developer passionate about building scalable web applications 
+            with clean code and modern technologies
+          </motion.p>
+          
+          <motion.div 
+            className="hero-buttons"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <button className="hero-btn hero-btn-primary" onClick={() => scrollToSection('projects')}>
+              View Projects
             </button>
-            <button className="btn-secondary" onClick={() => scrollToSection('contact')}>
-              Contact Me
+            <button className="hero-btn hero-btn-secondary" onClick={() => window.open('https://drive.google.com/file/d/your-resume-id/view', '_blank')}>
+              Download Resume
             </button>
-          </div>
-        </motion.div>
-        
-        <motion.div 
-          className="hero-visual"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <div className="floating-card">
-            <div className="card-glow"></div>
-            <div className="mockup-container">
-              <div className="code-window">
-                <div className="window-header">
-                  <span className="dot red"></span>
-                  <span className="dot yellow"></span>
-                  <span className="dot green"></span>
-                </div>
-                <div className="code-content">
-                  <p><span className="keyword">const</span> <span className="variable">developer</span> = &#123;</p>
-                  <p>&nbsp;&nbsp;name: <span className="string">"Kandhal Shakil"</span>,</p>
-                  <p>&nbsp;&nbsp;skills: [<span className="string">"Python"</span>, <span className="string">"Django"</span>, <span className="string">"Backend"</span>],</p>
-                  <p>&nbsp;&nbsp;passion: <span className="string">"Creating"</span></p>
-                  <p>&#125;;</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

@@ -1,37 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap, faCalendarDays, faSchool } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import './Education.css';
 
 const Education = () => {
-  const [hoveredCard, setHoveredCard] = useState(null);
-
-  const journeyData = [
+  const experienceData = [
     {
-      year: '2020 - 2021',
-      title: 'Completed 10th Grade',
-      subtitle: 'Gujarat State Board',
-      description: 'Strong foundation in academics',
-      icon: faSchool,
+      title: 'Computer Science & Technology',
+      company: 'Lok Jagruti Kendra University',
+      duration: '2023 - Present',
       type: 'education',
-    },
-    {
-      year: '2022 - 2023',
-      title: 'Completed 12th Science',
-      subtitle: 'Gujarat State Board',
-      description: 'Specialized in Science stream',
-      icon: faSchool,
-      type: 'education',
-    },
-    {
-      year: '2023',
-      title: 'Started B.E in CST',
-      subtitle: 'Lok Jagruti Kendra University',
-      description: 'Computer Science & Technology',
       icon: faGraduationCap,
-      type: 'education',
+      points: [
+        'Building strong foundation in CS fundamentals',
+        'Learning data structures, algorithms, and system design',
+        'Working on real-world projects with modern tech stack'
+      ]
     },
+    {
+      title: 'Open Source Contributor',
+      company: 'Self-Learning & Projects',
+      duration: '2023 - Present',
+      type: 'experience',
+      icon: faBriefcase,
+      points: [
+        'Built full-stack applications with React and Python',
+        'Implemented AI features and authentication systems',
+        'Deployed production-ready applications on cloud platforms'
+      ]
+    }
   ];
 
   return (
@@ -39,68 +37,42 @@ const Education = () => {
       <div className="section-divider"></div>
       
       <div className="education-container">
-        <motion.div 
-          className="education-header"
+        <motion.h2 
+          className="section-title gradient-text"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="section-badge">
-            <span className="badge-text">My Story</span>
-          </div>
-          <h2 className="section-title">
-            Education & <span className="gradient-text">Journey</span>
-          </h2>
-          <p className="section-subtitle">
-            A timeline of my academic milestones and professional achievements
-          </p>
-        </motion.div>
+          Experience
+        </motion.h2>
+        <p className="section-subtitle">My journey so far</p>
         
-        <div className="timeline-wrapper">
-          <div className="timeline-line"></div>
-          
-          {journeyData.map((item, index) => (
+        <div className="experience-list">
+          {experienceData.map((item, index) => (
             <motion.div
               key={index}
-              className={`timeline-item ${index % 2 === 0 ? 'timeline-item-left' : 'timeline-item-right'}`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              className="experience-card"
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <div className="timeline-content">
-                <div className={`journey-card ${hoveredCard === index ? 'card-hovered' : ''}`}>
-                  <div className="card-glow"></div>
-                  
-                  <div className={`type-badge ${item.type === 'achievement' ? 'type-badge-achievement' : ''}`}>
-                    {item.type}
-                  </div>
-                  
-                  <div className="card-header">
-                    <div className={`icon-wrapper ${hoveredCard === index ? 'icon-hovered' : ''}`}>
-                      <FontAwesomeIcon icon={item.icon} />
-                    </div>
-                    
-                    <div className="card-content">
-                      <div className="year-badge">
-                        <FontAwesomeIcon icon={faCalendarDays} />
-                        <span>{item.year}</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <h3 className="card-title">{item.title}</h3>
-                  <p className="card-subtitle">{item.subtitle}</p>
-                  <p className="card-description">{item.description}</p>
+              <div className="experience-header">
+                <div className="experience-icon">
+                  <FontAwesomeIcon icon={item.icon} />
+                </div>
+                <div className="experience-info">
+                  <h3 className="experience-title">{item.title}</h3>
+                  <p className="experience-company">{item.company}</p>
+                  <p className="experience-duration">{item.duration}</p>
                 </div>
               </div>
-              
-              <div className="timeline-dot">
-                <div className={`dot ${hoveredCard === index ? 'dot-active' : ''}`}></div>
-              </div>
+              <ul className="experience-points">
+                {item.points.map((point, idx) => (
+                  <li key={idx}>{point}</li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>

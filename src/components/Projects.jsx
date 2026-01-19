@@ -4,47 +4,30 @@ import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import './Projects.css';
 
 const Projects = () => {
-  const featuredProject = {
-    title: 'Personal Portfolio',
-    description: 'A React.js-powered portfolio website highlighting projects, technical expertise, and personal achievements. Styled with styled-components, it reflects professionalism through modern UI design, responsiveness, and clear project presentation.',
-    image: 'https://github.com/KandhalShakil/Portfolio_react/blob/main/public/pic.jpg?raw=true',
-    tags: ['React', 'Styled Components', 'Responsive Design', 'Framer Motion'],
-    liveLink: 'https://www.kandhal.tech',
-    codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
-  };
-
   const projects = [
     {
-      title: 'SKY Event',
-      description: 'A responsive event management and promotion website built with HTML5, CSS3, and JavaScript.',
-      image: 'https://github.com/KandhalShakil/Sky_Event/blob/main/logo.jpg?raw=true',
-      tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-      liveLink: 'https://sky-event.vercel.app/',
-      codeLink: 'https://github.com/KandhalShakil/Sky_Event'
-    },
-    {
-      title: 'Tic Tac Toe Game',
-      description: 'Full-stack web game using React, Flask, MongoDB, JWT auth, multiple game modes (PvP + AI), real-time play, player stats, and leaderboard.',
-      image: 'https://github.com/KandhalShakil/Tic-tac-toe-react/blob/main/public/Game.jpg?raw=true',
-      tags: ['React', 'Python', 'AI', 'Dark Mode'],
-      liveLink: 'https://www.game.kandhal.tech',
-      codeLink: 'https://github.com/KandhalShakil/Tic-tac-toe-react'
+      title: 'Personal Portfolio',
+      description: 'React portfolio showcasing projects and technical expertise',
+      image: 'https://github.com/KandhalShakil/Portfolio_react/blob/main/public/pic.jpg?raw=true',
+      tags: ['React', 'Framer Motion', 'Responsive'],
+      liveLink: 'https://www.kandhal.tech',
+      codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
     },
     {
       title: 'Kandhal Invoice System',
-      description: 'A comprehensive invoice management system built with modern web technologies. Features invoice creation, PDF generation, client management, and real-time data tracking for efficient business operations.',
+      description: 'Invoice management with PDF generation and client tracking',
       image: 'https://github.com/KandhalShakil/Invoice_system/blob/main/static/pic.png?raw=true',
-      tags: ['Python', 'HTML', 'PDF Generation', 'JavaScript'],
+      tags: ['Python', 'PDF', 'JavaScript'],
       liveLink: 'https://www.invoice.kandhal.tech',
       codeLink: 'https://github.com/KandhalShakil/Invoice_system'
     },
     {
-      title: 'More Projects',
-      description: 'Check out more projects on my GitHub profile',
-      image: '🚀',
-      tags: ['Coming Soon'],
-      liveLink: 'https://github.com/KandhalShakil',
-      codeLink: 'https://github.com/KandhalShakil'
+      title: 'SKY Event',
+      description: 'Responsive event management and promotion website',
+      image: 'https://github.com/KandhalShakil/Sky_Event/blob/main/logo.jpg?raw=true',
+      tags: ['HTML5', 'CSS3', 'JavaScript'],
+      liveLink: 'https://sky-event.vercel.app/',
+      codeLink: 'https://github.com/KandhalShakil/Sky_Event'
     }
   ];
 
@@ -60,45 +43,9 @@ const Projects = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Featured Projects
+          Projects
         </motion.h2>
-        
-        {/* Featured Project */}
-        <motion.div 
-          className="featured-project"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="featured-badge">Featured</div>
-          <div className="featured-content">
-            <div className="featured-image">
-              {featuredProject.image.startsWith('http') ? (
-                <img src={featuredProject.image} alt={featuredProject.title} className="project-img" />
-              ) : (
-                <span className="emoji-icon">{featuredProject.image}</span>
-              )}
-            </div>
-            <div className="featured-info">
-              <h3 className="project-title">{featuredProject.title}</h3>
-              <p className="project-description">{featuredProject.description}</p>
-              <div className="project-tags">
-                {featuredProject.tags.map((tag, index) => (
-                  <span key={index} className="tag">{tag}</span>
-                ))}
-              </div>
-              <div className="project-links">
-                <a href={featuredProject.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                  <FaExternalLinkAlt /> View Live
-                </a>
-                <a href={featuredProject.codeLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                  <FaGithub /> Code
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        <p className="section-subtitle">Building solutions that matter</p>
         
         {/* Project Grid */}
         <div className="projects-grid">
@@ -110,7 +57,6 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
             >
               <div className="project-image">
                 {project.image.startsWith('http') ? (
@@ -118,14 +64,6 @@ const Projects = () => {
                 ) : (
                   <span className="emoji-icon">{project.image}</span>
                 )}
-                <div className="project-overlay">
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="overlay-btn">
-                    <FaExternalLinkAlt /> View Live
-                  </a>
-                  <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="overlay-btn">
-                    <FaGithub /> Code
-                  </a>
-                </div>
               </div>
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
@@ -134,6 +72,14 @@ const Projects = () => {
                   {project.tags.map((tag, tagIndex) => (
                     <span key={tagIndex} className="tag">{tag}</span>
                   ))}
+                </div>
+                <div className="project-links">
+                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-btn">
+                    <FaExternalLinkAlt /> Live Demo
+                  </a>
+                  <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="project-btn">
+                    <FaGithub /> Source Code
+                  </a>
                 </div>
               </div>
             </motion.div>

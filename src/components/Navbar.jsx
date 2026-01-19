@@ -48,11 +48,9 @@ const Navbar = () => {
 
   const menuItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'education', label: 'Education' },
+    { id: 'education', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
-    { id: 'achievements', label: 'Achievements' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -71,17 +69,14 @@ const Navbar = () => {
         </div>
         
         {/* Desktop Menu */}
-        <ul className="navbar-menu desktop-menu">
+        <ul className="nav-menu desktop-menu">
           {menuItems.map((item) => (
-            <li key={item.id} onClick={() => scrollToSection(item.id)}>
-              {item.label}
+            <li key={item.id} className="nav-item">
+              <span className="nav-link" onClick={() => scrollToSection(item.id)}>
+                {item.label}
+              </span>
             </li>
           ))}
-          <li>
-            <button className="hire-btn" onClick={() => scrollToSection('contact')}>
-              Hire Me
-            </button>
-          </li>
         </ul>
 
         {/* Mobile Hamburger Button */}
@@ -118,15 +113,6 @@ const Navbar = () => {
                   {item.label}
                 </motion.li>
               ))}
-              <motion.li
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: menuItems.length * 0.1 }}
-              >
-                <button className="hire-btn-mobile" onClick={() => scrollToSection('contact')}>
-                  Hire Me
-                </button>
-              </motion.li>
             </ul>
           </motion.div>
         )}
