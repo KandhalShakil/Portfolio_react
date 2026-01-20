@@ -61,9 +61,6 @@ const Hero = () => {
             <button className="hero-btn hero-btn-primary" onClick={() => scrollToSection('projects')}>
               View Projects
             </button>
-            <button className="hero-btn hero-btn-secondary" onClick={() => window.open('https://drive.google.com/file/d/your-resume-id/view', '_blank')}>
-              Download Resume
-            </button>
           </motion.div>
         </motion.div>
       </div>

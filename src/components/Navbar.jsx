@@ -49,7 +49,7 @@ const Navbar = () => {
   const menuItems = [
     { id: 'home', label: 'Home' },
     { id: 'skills', label: 'Skills' },
-    { id: 'education', label: 'Experience' },
+    { id: 'education', label: 'Education' },
     { id: 'achievements', label: 'Achievements' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' }

@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import './Education.css';
 
 const Education = () => {
   const experienceData = [
     {
-      title: 'Computer Science & Technology',
-      company: 'Lok Jagruti Kendra University',
-      duration: '2023 - Present',
+      title: 'B.Tech in Computer Science & Engineering',
+      company: 'LJ Institute of Engineering and Technology (LJIET)',
+      duration: '2022 - Present',
       type: 'education',
       icon: faGraduationCap,
       points: [
@@ -19,15 +19,15 @@ const Education = () => {
       ]
     },
     {
-      title: 'Open Source Contributor',
-      company: 'Self-Learning & Projects',
-      duration: '2023 - Present',
-      type: 'experience',
-      icon: faBriefcase,
+      title: 'Higher Secondary Education (Science)',
+      company: 'The New Age High School',
+      duration: '2022 - 2023',
+      type: 'education',
+      icon: faGraduationCap,
       points: [
-        'Built full-stack applications with React and Python',
-        'Implemented AI features and authentication systems',
-        'Deployed production-ready applications on cloud platforms'
+        'Focused on Mathematics, Physics, and Chemistry',
+        'Developed strong analytical and problem-solving skills',
+        'Achieved excellence in academic performance'
       ]
     }
   ];
@@ -44,9 +44,9 @@ const Education = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Experience
+          Education
         </motion.h2>
-        <p className="section-subtitle">My journey so far</p>
+        <p className="section-subtitle">My academic journey</p>
         
         <div className="experience-list">
           {experienceData.map((item, index) => (
