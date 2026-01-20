@@ -77,6 +77,12 @@ const Contact = () => {
 
     try {
       const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+      
+      // Debug: Check if API key exists
+      if (!GEMINI_API_KEY) {
+        throw new Error("API key not found. Please configure environment variables.");
+      }
+      
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
         {
