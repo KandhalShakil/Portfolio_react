@@ -76,7 +76,7 @@ const Contact = () => {
     setAiError("");
 
     try {
-      const GEMINI_API_KEY = "AIzaSyAt75ta56HeZA8jEsUw2sziT8SPvSZS2L0";
+      const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
         {
