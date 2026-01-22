@@ -28,9 +28,6 @@ const Contact = () => {
     error: null,
   });
 
-  const [aiGenerating, setAiGenerating] = useState(false);
-  const [aiError, setAiError] = useState("");
-
   // Timer for OTP expiry
   useEffect(() => {
     if (!showOtpPopup || timeLeft <= 0) return;
@@ -62,74 +59,6 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-  };
-
-  // Generate message using Gemini API
-  const generateMessageByAI = async () => {
-    if (!formData.subject.trim()) {
-      setAiError("Please enter a subject first!");
-      setTimeout(() => setAiError(""), 3000);
-      return;
-    }
-
-    setAiGenerating(true);
-    setAiError("");
-
-    try {
-      const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-      
-      // Debug: Check if API key exists
-      if (!GEMINI_API_KEY) {
-        throw new Error("API key not found. Please configure environment variables.");
-      }
-      
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-goog-api-key": GEMINI_API_KEY,
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `Write a professional and concise message for a portfolio contact form. The sender's name is "${formData.name}" writing to "Kandhal Shakil". The message is about: "${formData.subject}". Write a polite, clear message appropriate for business communication. Keep it between 50-150 words. Do not include or repeat the subject line in the message body.`,
-                  },
-                ],
-              },
-            ],
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("API Error:", errorData);
-        throw new Error("Failed to generate message");
-      }
-
-      const data = await response.json();
-      const generatedMessage =
-        data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-      if (generatedMessage) {
-        setFormData({
-          ...formData,
-          message: generatedMessage,
-        });
-      } else {
-        throw new Error("No message generated");
-      }
-    } catch (error) {
-      console.error("Error generating message:", error);
-      setAiError("Failed to generate message. Please try again.");
-      setTimeout(() => setAiError(""), 5000);
-    } finally {
-      setAiGenerating(false);
-    }
   };
 
   // Send OTP via EmailJS
@@ -465,31 +394,6 @@ const Contact = () => {
                     placeholder="What's this about?"
                   />
                 </div>
-
-                {/* AI Message Generation Button */}
-                {formData.subject.trim() && (
-                  <div className="ai-message-section">
-                    <button
-                      type="button"
-                      className="ai-generate-btn"
-                      onClick={generateMessageByAI}
-                      disabled={aiGenerating}
-                    >
-                      {aiGenerating ? (
-                        <>
-                          <span className="ai-spinner"></span>
-                          Generating...
-                        </>
-                      ) : (
-                        <>
-                          <span className="ai-icon">✨</span>
-                          Write Message by AI
-                        </>
-                      )}
-                    </button>
-                    {aiError && <div className="ai-error-message">{aiError}</div>}
-                  </div>
-                )}
 
                 <div className="form-group">
                   <label htmlFor="message">Message</label>
