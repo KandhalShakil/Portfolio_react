@@ -33,21 +33,21 @@ const Projects = () => {
 
   return (
     <section className="projects" id="projects">
-      <div className="section-divider"></div>
-      
       <div className="projects-container">
-        <motion.h2 
-          className="section-title gradient-text"
-          initial={{ opacity: 0, y: -20 }}
+        <motion.div 
+          className="projects-header"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Projects
-        </motion.h2>
-        <p className="section-subtitle">Building solutions that matter</p>
+          <div className="projects-label">MY WORK</div>
+          <h2 className="projects-title">
+            Featured <span className="highlight">Projects</span>
+          </h2>
+          <p className="projects-subtitle">Building solutions that matter</p>
+        </motion.div>
         
-        {/* Project Grid */}
         <div className="projects-grid">
           {projects.map((project, index) => (
             <motion.div
@@ -64,21 +64,28 @@ const Projects = () => {
                 ) : (
                   <span className="emoji-icon">{project.image}</span>
                 )}
+                <div className="project-overlay">
+                  <div className="overlay-links">
+                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="overlay-btn">
+                      <FaExternalLinkAlt />
+                    </a>
+                    <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="overlay-btn">
+                      <FaGithub />
+                    </a>
+                  </div>
+                </div>
               </div>
               <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
                 <div className="project-tags">
                   {project.tags.map((tag, tagIndex) => (
                     <span key={tagIndex} className="tag">{tag}</span>
                   ))}
                 </div>
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-description">{project.description}</p>
                 <div className="project-links">
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-btn">
-                    <FaExternalLinkAlt /> Live Demo
-                  </a>
-                  <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="project-btn">
-                    <FaGithub /> Source Code
+                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                    View Project <FaExternalLinkAlt />
                   </a>
                 </div>
               </div>
