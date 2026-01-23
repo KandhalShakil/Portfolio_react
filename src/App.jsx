@@ -1,44 +1,28 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import './App.css';
+
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
-
-// Lazy load components that are below the fold
-const Skills = lazy(() => import('./components/Skills.jsx'));
-const Projects = lazy(() => import('./components/Projects.jsx'));
-const Education = lazy(() => import('./components/Education.jsx'));
-const Achievements = lazy(() => import('./components/Achievements.jsx'));
-const About = lazy(() => import('./components/About.jsx'));
-const Contact = lazy(() => import('./components/Contact.jsx'));
-const Footer = lazy(() => import('./components/Footer.jsx'));
-
-// Loading component
-const LoadingSpinner = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '200px',
-    color: '#00FF99'
-  }}>
-    <div>Loading...</div>
-  </div>
-);
+import About from './components/About.jsx';
+import Skills from './components/Skills.jsx';
+import Education from './components/Education.jsx';
+import Achievements from './components/Achievements.jsx';
+import Projects from './components/Projects.jsx';
+import Contact from './components/Contact.jsx';
+import Footer from './components/Footer.jsx';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Hero />
-      <Suspense fallback={<LoadingSpinner />}>
-        <About />
-        <Skills />
-        <Education />
-        <Achievements />
-        <Projects />
-        <Contact />
-        <Footer />
-      </Suspense>
+      <About />
+      <Skills />
+      <Education />
+      <Achievements />
+      <Projects />
+      <Contact />
+      <Footer />
     </div>
   );
 }

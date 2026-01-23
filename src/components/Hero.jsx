@@ -25,6 +25,15 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
+            className="profile-picture"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            <img src="/profile.jpg" alt="Kandhal Shakil" />
+          </motion.div>
+          
+          <motion.div
             className="hero-label"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
