@@ -20,7 +20,7 @@ module.exports = {
                 ? rule.exclude
                 : [rule.exclude]
               : [];
-            rule.exclude = [...existingExclude, /@mediapipe\/tasks-vision/];
+            rule.exclude = existingExclude;
           }
 
           return rule;
