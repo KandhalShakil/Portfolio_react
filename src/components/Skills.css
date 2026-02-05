@@ -1,9 +1,47 @@
 .skills {
   background: transparent;
+  padding: 100px 0;
 }
 
 .skills-container {
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.skills-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #7877c6;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.skills-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e4e4e7;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.skills-title .highlight {
+  background: linear-gradient(135deg, #7877c6 0%, #5856d6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.skills-subtitle {
+  font-size: 1.125rem;
+  color: #a1a1aa;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -25,32 +63,15 @@
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(88, 86, 214, 0.3);
   transform: translateY(-4px);
-}
-
-.category-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.category-icon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(88, 86, 214, 0.1);
-  border-radius: 10px;
-  font-size: 1.25rem;
-  color: #a78bfa;
+  box-shadow: 0 10px 30px rgba(88, 86, 214, 0.1);
 }
 
 .category-title {
   font-size: 1.125rem;
   font-weight: 600;
   color: #fff;
-  margin: 0;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
 }
 
 .skills-list {
@@ -67,6 +88,7 @@
   background: rgba(255, 255, 255, 0.02);
   border-radius: 8px;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .skill-item:hover {
@@ -77,6 +99,11 @@
 .skill-icon {
   font-size: 1.5rem;
   color: #a78bfa;
+  transition: color 0.2s ease;
+}
+
+.skill-item:hover .skill-icon {
+  color: #7877c6;
 }
 
 .skill-name {
@@ -89,6 +116,24 @@
 @media (max-width: 1024px) {
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skills-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills {
+    padding: 80px 0;
+  }
+  
+  .skills-title {
+    font-size: 2.25rem;
+  }
+  
+  .skills-subtitle {
+    font-size: 1rem;
   }
 }
 

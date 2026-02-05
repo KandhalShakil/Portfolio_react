@@ -265,10 +265,25 @@ const Contact = () => {
           Let's work together on your next project
         </motion.p>
 
-        <div className="contact-content">
+        <div className="contact-intro">
+          <div>
+            <h3>Let’s build something memorable</h3>
+            <p>
+              Share your project goals and I’ll help craft the right solution—
+              from strategy to launch-ready UI.
+            </p>
+          </div>
+          <div className="contact-chips">
+            <span>Fast replies</span>
+            <span>Remote-friendly</span>
+            <span>Full-stack delivery</span>
+          </div>
+        </div>
+
+        <div className="contact-grid">
           {/* Contact Info */}
           <motion.div
-            className="contact-info"
+            className="contact-panel contact-info"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -327,7 +342,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
-            className="contact-form-wrapper"
+            className="contact-panel contact-form-wrapper"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

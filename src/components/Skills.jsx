@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faNodeJs, faHtml5, faCss3Alt, faJs, faPython, faJava } from '@fortawesome/free-brands-svg-icons';
-import { faDatabase, faBrain, faUsers, faServer, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faReact, faNodeJs, faHtml5, faCss3Alt, faJs, faPython, faJava, faGitAlt, faDocker, faAws } from '@fortawesome/free-brands-svg-icons';
+import { faDatabase, faServer, faCloud, faCog, faCode } from '@fortawesome/free-solid-svg-icons';
 import './Skills.css';
 
 const Skills = () => {
@@ -22,22 +22,25 @@ const Skills = () => {
         { name: 'Python', icon: faPython },
         { name: 'Java', icon: faJava },
         { name: 'Node.js', icon: faNodeJs },
-        { name: 'Data Structures', icon: faServer }
+        { name: 'Django', icon: faServer }
       ]
     },
     {
-      title: 'Database',
+      title: 'Database & Cloud',
       skills: [
         { name: 'MongoDB', icon: faDatabase },
-        { name: 'SQL', icon: faDatabase }
+        { name: 'PostgreSQL', icon: faDatabase },
+        { name: 'AWS', icon: faAws },
+        { name: 'Docker', icon: faDocker }
       ]
     },
     {
-      title: 'Tools',
+      title: 'Tools & Others',
       skills: [
-        { name: 'Git', icon: faBrain },
-        { name: 'VS Code', icon: faUsers },
-        { name: 'Postman', icon: faChartLine }
+        { name: 'Git', icon: faGitAlt },
+        { name: 'VS Code', icon: faCode },
+        { name: 'REST APIs', icon: faCloud },
+        { name: 'Agile', icon: faCog }
       ]
     }
   ];
@@ -47,16 +50,19 @@ const Skills = () => {
       <div className="section-divider"></div>
       
       <div className="skills-container">
-        <motion.h2 
-          className="section-title gradient-text"
-          initial={{ opacity: 0, y: -20 }}
+        <motion.div 
+          className="skills-header"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Skills
-        </motion.h2>
-        <p className="section-subtitle">Technologies I work with</p>
+          <div className="skills-label">TECHNICAL EXPERTISE</div>
+          <h2 className="skills-title">
+            Skills & <span className="highlight">Technologies</span>
+          </h2>
+          <p className="skills-subtitle">Technologies I work with to build amazing solutions</p>
+        </motion.div>
         
         <div className="skills-grid">
           {skillCategories.map((category, categoryIndex) => (
@@ -71,15 +77,17 @@ const Skills = () => {
               <h3 className="category-title">{category.title}</h3>
               <div className="skills-list">
                 {category.skills.map((skill, skillIndex) => (
-                  <div
+                  <motion.div
                     key={skillIndex}
                     className="skill-item"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="skill-icon">
                       <FontAwesomeIcon icon={skill.icon} />
                     </div>
                     <span className="skill-name">{skill.name}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -90,4 +98,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default React.memo(Skills);

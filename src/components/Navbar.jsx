@@ -48,6 +48,7 @@ const Navbar = () => {
 
   const menuItems = [
     { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'education', label: 'Education' },
     { id: 'achievements', label: 'Achievements' },
@@ -56,19 +57,22 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav 
+    <motion.nav
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="navbar-container">
-        <div className="navbar-logo">
-          <span className="logo-text" onClick={() => scrollToSection('home')}>
-            Kandhal Shakil
-          </span>
-        </div>
-        
+        <button
+          className="navbar-logo"
+          onClick={() => scrollToSection('home')}
+          type="button"
+        >
+          <span className="logo-text">Kandhal</span>
+          <span className="logo-dot">.</span>
+        </button>
+
         {/* Desktop Menu */}
         <ul className="nav-menu desktop-menu">
           {menuItems.map((item) => (
@@ -80,16 +84,23 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Mobile Hamburger Button */}
-        <button 
-          className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div className="navbar-actions">
+          <button className="nav-cta" onClick={() => scrollToSection('contact')} type="button">
+            Let’s Talk
+          </button>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            type="button"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -114,6 +125,15 @@ const Navbar = () => {
                   {item.label}
                 </motion.li>
               ))}
+              <motion.li
+                className="mobile-cta"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: menuItems.length * 0.1 }}
+                onClick={() => scrollToSection('contact')}
+              >
+                Let’s Talk
+              </motion.li>
             </ul>
           </motion.div>
         )}

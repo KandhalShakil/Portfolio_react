@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-left">
             <h3 className="footer-brand">Kandhal Shakil</h3>
-            <p className="footer-tagline">Building digital experiences with passion</p>
+            <p className="footer-tagline">Crafting premium web experiences with clarity and speed.</p>
           </div>
           
           <div className="footer-links">

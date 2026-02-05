@@ -92,7 +92,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/TUX8P7X8ELQD',
-      image: '/images/certificates/Introduction to Java.png'
+      image: `${process.env.PUBLIC_URL}/images/certificates/Introduction to Java.png`
     },
     {
       name: 'Inheritance and Data Structures in Java',
@@ -100,7 +100,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/H8XTMHMZSYZX',
-      image: '/images/certificates/Inheritance and Data Structures in Java.png'
+      image: `${process.env.PUBLIC_URL}/images/certificates/Inheritance and Data Structures in Java.png`
     },
     {
       name: 'Introduction to HTML, CSS, & JavaScript',
@@ -108,7 +108,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/2MWVBEWX2M8N',
-      image: '/images/certificates/Introduction to HTML, CSS, & JavaScript.png'
+      image: `${process.env.PUBLIC_URL}/images/certificates/Introduction to HTML, CSS, & JavaScript.png`
     },
     {
       name: 'Exploratory Data Analysis for Machine Learning',
@@ -116,7 +116,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://www.coursera.org/account/accomplishments/verify/NBH6CSAM16MD',
-      image: '/images/certificates/Exploratory Data Analysis for Machine Learning.png'
+      image: `${process.env.PUBLIC_URL}/images/certificates/Exploratory Data Analysis for Machine Learning.png`
     },
     {
       name: 'Developing Front-End Apps with React',
@@ -124,7 +124,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/0178B60775HH',
-      image: '/images/certificates/Developing Front-End Apps with React.png'
+      image: `${process.env.PUBLIC_URL}/images/certificates/Developing Front-End Apps with React.png`
     },
     {
       name: 'Prompt Engineering: The Skill of Asking AI Right',
@@ -132,7 +132,7 @@ const Achievements = () => {
       year: '2024',
       icon: <FaCertificate />,
       link: 'https://drive.google.com/file/d/1gjw4euDn_6bJ16aXcIA2te8-NSo7lKld/view?usp=sharing',
-      image: '/images/certificates/prompt_engg.png'
+      image: `${process.env.PUBLIC_URL}/images/certificates/prompt_engg.png`
     }
   ];
 
@@ -150,6 +150,24 @@ const Achievements = () => {
         >
           Achievements & Certifications
         </motion.h2>
+        <p className="section-subtitle">
+          Proof of continuous learning across development, data, and product design.
+        </p>
+
+        <div className="achievements-stats">
+          <div>
+            <span>6</span>
+            <p>Certifications</p>
+          </div>
+          <div>
+            <span>4</span>
+            <p>Skill Domains</p>
+          </div>
+          <div>
+            <span>2024</span>
+            <p>Latest Completion</p>
+          </div>
+        </div>
         
         <div className="certifications-grid">
           {certifications.map((cert, index) => (

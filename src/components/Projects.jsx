@@ -1,33 +1,47 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import './Projects.css';
 
 const Projects = () => {
+  const [imageLoaded, setImageLoaded] = useState({});
+
+  const handleImageLoad = useCallback((index) => {
+    setImageLoaded(prev => ({ ...prev, [index]: true }));
+  }, []);
+
   const projects = [
     {
       title: 'Personal Portfolio',
-      description: 'React portfolio showcasing projects and technical expertise',
+      description: 'React portfolio showcasing projects and technical expertise with modern animations',
       image: 'https://github.com/KandhalShakil/Portfolio_react/blob/main/public/pic.jpg?raw=true',
-      tags: ['React', 'Framer Motion', 'Responsive'],
+      tags: ['React', 'Framer Motion', 'Responsive', 'CSS3'],
       liveLink: 'https://www.kandhal.tech',
       codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
     },
     {
       title: 'Kandhal Invoice System',
-      description: 'Invoice management with PDF generation and client tracking',
+      description: 'Full-featured invoice management system with PDF generation and client tracking',
       image: 'https://github.com/KandhalShakil/Invoice_system/blob/main/static/pic.png?raw=true',
-      tags: ['Python', 'PDF', 'JavaScript'],
+      tags: ['Python', 'Django', 'PDF Generation', 'JavaScript'],
       liveLink: 'https://www.invoice.kandhal.tech',
       codeLink: 'https://github.com/KandhalShakil/Invoice_system'
     },
     {
       title: 'SKY Event',
-      description: 'Responsive event management and promotion website',
+      description: 'Responsive event management and promotion website with modern design',
       image: 'https://github.com/KandhalShakil/Sky_Event/blob/main/logo.jpg?raw=true',
-      tags: ['HTML5', 'CSS3', 'JavaScript'],
+      tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
       liveLink: 'https://sky-event.vercel.app/',
       codeLink: 'https://github.com/KandhalShakil/Sky_Event'
+    },
+    {
+      title: 'Weather Dashboard',
+      description: 'Real-time weather application with location-based forecasts and interactive maps',
+      image: '🌤️',
+      tags: ['React', 'API Integration', 'Charts', 'Geolocation'],
+      liveLink: '#',
+      codeLink: '#'
     }
   ];
 
@@ -60,18 +74,35 @@ const Projects = () => {
             >
               <div className="project-image">
                 {project.image.startsWith('http') ? (
-                  <img src={project.image} alt={project.title} className="project-img" />
+                  <>
+                    {!imageLoaded[index] && (
+                      <div className="image-skeleton">
+                        <div className="skeleton-shimmer"></div>
+                      </div>
+                    )}
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className={`project-img ${imageLoaded[index] ? 'loaded' : ''}`}
+                      onLoad={() => handleImageLoad(index)}
+                      loading="lazy"
+                    />
+                  </>
                 ) : (
                   <span className="emoji-icon">{project.image}</span>
                 )}
                 <div className="project-overlay">
                   <div className="overlay-links">
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="overlay-btn">
-                      <FaExternalLinkAlt />
-                    </a>
-                    <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="overlay-btn">
-                      <FaGithub />
-                    </a>
+                    {project.liveLink !== '#' && (
+                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="overlay-btn" aria-label="View live project">
+                        <FaExternalLinkAlt />
+                      </a>
+                    )}
+                    {project.codeLink !== '#' && (
+                      <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="overlay-btn" aria-label="View source code">
+                        <FaGithub />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -84,9 +115,11 @@ const Projects = () => {
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
                 <div className="project-links">
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                    View Project <FaExternalLinkAlt />
-                  </a>
+                  {project.liveLink !== '#' && (
+                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
+                      View Project <FaExternalLinkAlt />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -97,4 +130,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default React.memo(Projects);

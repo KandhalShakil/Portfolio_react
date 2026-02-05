@@ -1,6 +1,6 @@
 .footer {
-  background: rgba(255, 255, 255, 0.01);
-  border-top: 1px solid rgba(120, 119, 198, 0.1);
+  background: rgba(5, 7, 14, 0.85);
+  border-top: 1px solid rgba(124, 92, 255, 0.15);
   padding: 4rem 0 2rem;
   margin-top: 4rem;
 }
@@ -13,10 +13,10 @@
 
 .footer-content {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1.2fr 1fr;
   gap: 3rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(120, 119, 198, 0.1);
+  border-bottom: 1px solid rgba(124, 92, 255, 0.18);
 }
 
 .footer-left {
@@ -28,7 +28,7 @@
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #7877c6 0%, #5856d6 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -36,7 +36,7 @@
 
 .footer-tagline {
   font-size: 0.9375rem;
-  color: #a1a1aa;
+  color: var(--muted);
   line-height: 1.6;
   margin: 0;
 }
@@ -61,12 +61,12 @@
 
 .footer-link-group a {
   font-size: 0.9375rem;
-  color: #a1a1aa;
+  color: var(--muted);
   transition: all 0.3s ease;
 }
 
 .footer-link-group a:hover {
-  color: #a78bfa;
+  color: #c4b5fd;
   transform: translateX(4px);
 }
 
@@ -88,20 +88,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(88, 86, 214, 0.1);
-  border: 1px solid rgba(88, 86, 214, 0.2);
+  background: rgba(124, 92, 255, 0.1);
+  border: 1px solid rgba(124, 92, 255, 0.2);
   border-radius: 10px;
   font-size: 1.25rem;
-  color: #a78bfa;
+  color: #c4b5fd;
   transition: all 0.3s ease;
 }
 
 .footer-social-link:hover {
-  background: linear-gradient(135deg, #7877c6, #5856d6);
-  border-color: #5856d6;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  border-color: var(--primary);
   color: #fff;
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(88, 86, 214, 0.3);
+  box-shadow: 0 8px 16px rgba(124, 92, 255, 0.3);
 }
 
 .footer-bottom {
@@ -114,7 +114,7 @@
 .footer-copyright,
 .footer-made {
   font-size: 0.875rem;
-  color: #71717a;
+  color: #94a3b8;
   margin: 0;
 }
 
