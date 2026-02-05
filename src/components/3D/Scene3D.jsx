@@ -1,12 +1,11 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial, OrbitControls } from '@react-three/drei';
+import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
 function Stars(props) {
   const ref = useRef();
-  const [, positions] = useMemo(() => {
-    const sphere = new THREE.SphereGeometry(1, 32, 32);
+  const positions = useMemo(() => {
     const positions = new Float32Array(5000 * 3);
     
     for (let i = 0; i < 5000; i++) {
@@ -16,7 +15,7 @@ function Stars(props) {
       positions.set([x, y, z], i * 3);
     }
     
-    return [sphere, positions];
+    return positions;
   }, []);
 
   useFrame((state, delta) => {
@@ -38,30 +37,6 @@ function Stars(props) {
         />
       </Points>
     </group>
-  );
-}
-
-function FloatingGeometry() {
-  const meshRef = useRef();
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime) * 0.2;
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.3;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.5;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={[2, 0, 0]}>
-      <icosahedronGeometry args={[1, 1]} />
-      <meshStandardMaterial
-        color="#5856d6"
-        transparent
-        opacity={0.6}
-        wireframe
-      />
-    </mesh>
   );
 }
 
@@ -87,16 +62,7 @@ function Scene3D() {
         }}
       >
         <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
         <Stars />
-        <FloatingGeometry />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          enableRotate={true}
-          autoRotate
-          autoRotateSpeed={0.5}
-        />
       </Canvas>
     </div>
   );
