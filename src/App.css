@@ -1,0 +1,205 @@
+.App {
+  min-height: 100vh;
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.app-3d {
+  background: transparent;
+}
+
+/* Ambient background layers */
+.App::before,
+.App::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.App::before {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(124, 92, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(76, 201, 240, 0.08), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.06), transparent 40%);
+}
+
+.App::after {
+  background: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237c5cff' fill-opacity='0.05'%3E%3Cpath d='M60 0h1v120h-1V0zM0 60h120v1H0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.2;
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  color: #e4e4e7;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(120, 119, 198, 0.3);
+  border-top: 3px solid #7877c6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.loading-screen p {
+  font-size: 1.125rem;
+  color: #a1a1aa;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Global Layout */
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+/* Section Container */
+section {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  scroll-margin-top: 96px;
+}
+
+section > div:not(.hero-background):not(.section-divider):not(.glow-orb):not(.hero-3d-canvas):not(.skills-3d-canvas):not(.projects-3d-canvas) {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Section Spacing */
+.hero,
+.hero-3d,
+.skills,
+.skills-3d,
+.projects,
+.projects-3d,
+.education,
+.about,
+.contact {
+  padding: 110px 0;
+}
+
+/* Section Dividers */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 92, 255, 0.4), transparent);
+  margin-bottom: 60px;
+}
+
+/* Typography */
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced 3D Effects */
+.glass-effect {
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.neon-glow {
+  box-shadow:
+    0 0 24px rgba(124, 92, 255, 0.35),
+    0 0 48px rgba(124, 92, 255, 0.2),
+    0 0 72px rgba(76, 201, 240, 0.18);
+}
+
+.floating-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #7877c6, #5856d6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5856d6, #7877c6);
+}
+
+/* Selection */
+::selection {
+  background: rgba(88, 86, 214, 0.3);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero,
+  .hero-3d,
+  .skills,
+  .skills-3d,
+  .projects,
+  .projects-3d,
+  .education,
+  .about,
+  .contact {
+    padding: 90px 0;
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}
