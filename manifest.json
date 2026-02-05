@@ -1,11 +1,11 @@
-{
-  "short_name": "React App",
-  "name": "Create React App Sample",
+﻿{
+  "short_name": "Kandhal Shakil",
+  "name": "Kandhal Shakil - Python Developer Portfolio",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/jpeg"
     },
     {
       "src": "logo192.png",
@@ -18,8 +18,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/Portfolio_react/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#070911",
+  "background_color": "#070911"
 }
