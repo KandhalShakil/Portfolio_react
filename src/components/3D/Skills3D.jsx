@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 function Skills3D() {
@@ -119,3 +119,4 @@ function Skills3D() {
 }
 
 export default Skills3D;
+
