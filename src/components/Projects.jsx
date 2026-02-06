@@ -14,7 +14,7 @@ const Projects = () => {
     {
       title: 'Personal Portfolio',
       description: 'React portfolio showcasing projects and technical expertise with modern animations',
-      image: 'https://github.com/KandhalShakil/Portfolio_react/blob/main/public/pic.jpg?raw=true',
+      image: '/profile.jpg',
       tags: ['React', 'Framer Motion', 'Responsive', 'CSS3'],
       liveLink: 'https://www.kandhal.tech',
       codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
@@ -73,7 +73,7 @@ const Projects = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="project-image">
-                {project.image.startsWith('http') ? (
+                {(project.image.startsWith('http') || project.image.startsWith('/')) ? (
                   <>
                     {!imageLoaded[index] && (
                       <div className="image-skeleton">

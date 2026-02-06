@@ -260,6 +260,48 @@
   cursor: not-allowed;
 }
 
+@media (max-width: 1024px) {
+  .contact-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-panel {
+    padding: 1.5rem;
+  }
+
+  .contact-info-item:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-intro {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .contact-chips span {
+    font-size: 0.8rem;
+  }
+
+  .email-verification,
+  .otp-verification {
+    flex-direction: column;
+  }
+
+  .verify-btn {
+    width: 100%;
+  }
+
+  .social-icons {
+    flex-wrap: wrap;
+  }
+}
+
 .verified-badge {
   display: flex;
   align-items: center;

@@ -203,3 +203,23 @@ section > div:not(.hero-background):not(.section-divider):not(.glow-orb):not(.he
     font-size: 1rem;
   }
 }
+
+@media (max-width: 1024px) {
+  section > div:not(.hero-background):not(.section-divider):not(.glow-orb):not(.hero-3d-canvas):not(.skills-3d-canvas):not(.projects-3d-canvas) {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  section > div:not(.hero-background):not(.section-divider):not(.glow-orb):not(.hero-3d-canvas):not(.skills-3d-canvas):not(.projects-3d-canvas) {
+    padding: 0 1.1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+}

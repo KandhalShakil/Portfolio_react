@@ -207,3 +207,24 @@
     justify-content: flex-start;
   }
 }
+
+@media (max-width: 480px) {
+  .cert-image-wrapper {
+    height: 200px;
+  }
+
+  .cert-content {
+    padding: 1.25rem;
+  }
+
+  .cert-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cert-link,
+  .cert-request-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

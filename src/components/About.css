@@ -217,4 +217,12 @@
   .about-actions {
     flex-direction: column;
   }
+
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .image-wrapper {
+    max-width: 320px;
+  }
 }

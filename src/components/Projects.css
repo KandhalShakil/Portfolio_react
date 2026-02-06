@@ -56,7 +56,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
+  gap: 2.75rem;
 }
 
 .project-card {
@@ -64,6 +64,8 @@
   border: 1px solid rgba(120, 119, 198, 0.15);
   border-radius: 20px;
   overflow: hidden;
+  position: relative;
+  isolation: isolate;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
@@ -79,7 +81,8 @@
 
 .project-image {
   width: 100%;
-  height: 260px;
+  aspect-ratio: 16 / 9;
+  min-height: 220px;
   overflow: hidden;
   background: rgba(88, 86, 214, 0.05);
   position: relative;
@@ -140,7 +143,7 @@
 }
 
 .project-content {
-  padding: 2rem;
+  padding: 1.85rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -173,7 +176,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 0.875rem;
+  margin-bottom: 0.75rem;
   line-height: 1.3;
 }
 
@@ -242,11 +245,11 @@
 
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.25rem;
   }
 
   .project-image {
-    height: 220px;
+    min-height: 200px;
   }
 
   .project-content {
@@ -257,6 +260,28 @@
 @media (max-width: 480px) {
   .projects-title {
     font-size: 2rem;
+  }
+
+  .project-image {
+    aspect-ratio: 4 / 3;
+    min-height: 190px;
+  }
+
+  .project-content {
+    padding: 1.15rem;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+  }
+
+  .project-link {
+    width: 100%;
+    justify-content: center;
   }
 
   .project-title {

@@ -59,3 +59,10 @@ button {
   border: none;
   outline: none;
 }
+
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}

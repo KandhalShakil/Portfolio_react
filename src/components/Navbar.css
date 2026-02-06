@@ -249,3 +249,22 @@
       font-size: 1.25rem;
     }
   }
+
+  @media (max-width: 480px) {
+    .navbar-container {
+      padding: 0.85rem 1rem;
+    }
+
+    .navbar-logo {
+      font-size: 1.1rem;
+    }
+
+    .mobile-menu-list {
+      padding: 1.5rem 1rem;
+    }
+
+    .mobile-menu-list li {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+  }

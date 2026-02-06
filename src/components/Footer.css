@@ -163,3 +163,13 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 480px) {
+  .footer-brand {
+    font-size: 1.4rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+  }
+}
