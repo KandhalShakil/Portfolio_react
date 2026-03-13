@@ -36,13 +36,29 @@ const Projects = () => {
       codeLink: 'https://github.com/KandhalShakil/Sky_Event'
     },
     {
+      title: 'SchemeSnap AI',
+      description: 'AI platform to simplify scheme details, check eligibility, and generate multilingual action plans.',
+      image: 'https://raw.githubusercontent.com/KandhalShakil/SchemeSnap-AI/71662c6fdf917cd0d2d17facba3512e861b0af48/frontend/public/favicon.svg',
+      tags: ['Python', 'Django', 'DRF', 'React', 'Vite', 'Groq AI'],
+      liveLink: 'https://www.schemesnap-ai.kandhal.tech',
+      codeLink: 'https://github.com/KandhalShakil/SchemeSnap-AI'
+    },
+    {
       title: 'Weather Dashboard',
-      description: 'Real-time weather application with location-based forecasts and interactive maps',
-      image: '🌤️',
-      tags: ['React', 'API Integration', 'Charts', 'Geolocation'],
-      liveLink: '#',
-      codeLink: '#'
-    }
+      description: 'Full-stack weather dashboard with real-time conditions, AQI insights, and forecast tracking.',
+      image: 'https://raw.githubusercontent.com/KandhalShakil/Weather-Intelligence-Dashboard/80b25fc9e7ff3ca99b0e6d9352564febc5b6996a/frontend/favicon.svg',
+      tags: ['.NET', 'C#', 'HTML', 'JavaScript', 'OpenWeather API'],
+      liveLink: 'https://www.weather-intelligence-dashboard.kandhal.tech',
+      codeLink: 'https://github.com/KandhalShakil/Weather-Intelligence-Dashboard'
+    },
+    {
+      title: 'Sorting Algorithm Performance Analyzer',
+      description: 'Interactive analyzer to compare sorting algorithms using execution time, comparisons, and swaps.',
+      image: 'https://opengraph.githubassets.com/1/KandhalShakil/Sorting-Algorithm-Performance-Analyzer',
+      tags: ['HTML', 'CSS', 'JavaScript', 'Algorithms', 'Performance API'],
+      liveLink: 'http://sorting-algorithm-performance-analyzer.kandhal.tech',
+      codeLink: 'https://github.com/KandhalShakil/Sorting-Algorithm-Performance-Analyzer'
+    },
   ];
 
   return (
