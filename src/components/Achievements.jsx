@@ -36,6 +36,11 @@ const Achievements = () => {
       "Hello! I came across your portfolio and I'm impressed by your Prompt Engineering certification. Could you please share the certificate via email? I'd love to see the details of your achievement.",
       "Hi there! I noticed you have a Prompt Engineering certificate from Wayspire. Would it be possible to receive a copy of this certificate through email? It looks very interesting!",
       "Greetings! Your Prompt Engineering certification caught my attention. I'm working in a similar field and would appreciate if you could email me the certificate details. Thank you!"
+    ],
+    'Back-End Development with .NET': [
+      "Hello! I saw your Back-End Development with .NET certificate and was really impressed. Could you please share the certificate details via email?",
+      "Hi there! Your .NET back-end certification looks very relevant to my learning path. Would you be able to send a copy through email?",
+      "Greetings! I noticed your Coursera .NET certificate and would appreciate it if you could share the credential details via email."
     ]
   };
 
@@ -92,7 +97,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/TUX8P7X8ELQD',
-      image: `${process.env.PUBLIC_URL}/images/certificates/Introduction to Java.png`
+      image: '/images/certificates/Introduction to Java.png'
     },
     {
       name: 'Inheritance and Data Structures in Java',
@@ -100,7 +105,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/H8XTMHMZSYZX',
-      image: `${process.env.PUBLIC_URL}/images/certificates/Inheritance and Data Structures in Java.png`
+      image: '/images/certificates/Inheritance and Data Structures in Java.png'
     },
     {
       name: 'Introduction to HTML, CSS, & JavaScript',
@@ -108,7 +113,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/2MWVBEWX2M8N',
-      image: `${process.env.PUBLIC_URL}/images/certificates/Introduction to HTML, CSS, & JavaScript.png`
+      image: '/images/certificates/Introduction to HTML, CSS, & JavaScript.png'
     },
     {
       name: 'Exploratory Data Analysis for Machine Learning',
@@ -116,7 +121,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://www.coursera.org/account/accomplishments/verify/NBH6CSAM16MD',
-      image: `${process.env.PUBLIC_URL}/images/certificates/Exploratory Data Analysis for Machine Learning.png`
+      image: '/images/certificates/Exploratory Data Analysis for Machine Learning.png'
     },
     {
       name: 'Developing Front-End Apps with React',
@@ -124,7 +129,7 @@ const Achievements = () => {
       year: '2024',
       icon: <SiCoursera />,
       link: 'https://coursera.org/verify/0178B60775HH',
-      image: `${process.env.PUBLIC_URL}/images/certificates/Developing Front-End Apps with React.png`
+      image: '/images/certificates/Developing Front-End Apps with React.png'
     },
     {
       name: 'Prompt Engineering: The Skill of Asking AI Right',
@@ -132,7 +137,15 @@ const Achievements = () => {
       year: '2024',
       icon: <FaCertificate />,
       link: 'https://drive.google.com/file/d/1gjw4euDn_6bJ16aXcIA2te8-NSo7lKld/view?usp=sharing',
-      image: `${process.env.PUBLIC_URL}/images/certificates/prompt_engg.png`
+      image: '/images/certificates/prompt_engg.png'
+    },
+    {
+      name: 'Back-End Development with .NET',
+      provider: 'Coursera',
+      year: '2026',
+      icon: <SiCoursera />,
+      link: 'https://coursera.org/verify/1XALENBM84H6',
+      image: '/images/certificates/Back-End_Development_with_DotNet.png'
     }
   ];
 
@@ -156,7 +169,7 @@ const Achievements = () => {
 
         <div className="achievements-stats">
           <div>
-            <span>6</span>
+            <span>7</span>
             <p>Certifications</p>
           </div>
           <div>
@@ -164,7 +177,7 @@ const Achievements = () => {
             <p>Skill Domains</p>
           </div>
           <div>
-            <span>2024</span>
+            <span>2026</span>
             <p>Latest Completion</p>
           </div>
         </div>
