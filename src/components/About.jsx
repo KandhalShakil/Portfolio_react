@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './About.css';
+import { SITE_COPY } from '../data/portfolioData';
 
 const About = () => {
   const scrollToSection = (id) => {
@@ -24,31 +25,25 @@ const About = () => {
             <div className="about-label">ABOUT</div>
 
             <h2 className="about-title">
-              Designing with clarity, building with <span className="highlight">speed</span>
+              {SITE_COPY.tagline.split('speed')[0]}<span className="highlight">speed</span>
             </h2>
 
             <div className="about-text">
               <p>
-                I'm a Python developer focused on clean architecture, polished UI, and performance. I study Computer Science at Lok Jagruti Kendra University and build full-stack products with React and Python.
+                {SITE_COPY.intro}
               </p>
               <p>
-                I love turning complex ideas into elegant experiences, blending 3D motion, crisp layouts, and reliable backend systems.
+                {SITE_COPY.intro2}
               </p>
             </div>
 
             <div className="about-highlights">
-              <div className="highlight-card">
-                <h4>Product Mindset</h4>
-                <p>UX-first designs with measurable impact.</p>
-              </div>
-              <div className="highlight-card">
-                <h4>Full-Stack</h4>
-                <p>React, Django, APIs, and deployment.</p>
-              </div>
-              <div className="highlight-card">
-                <h4>3D Motion</h4>
-                <p>Immersive visuals without sacrificing speed.</p>
-              </div>
+              {SITE_COPY.highlights.map((item) => (
+                <div className="highlight-card" key={item.title}>
+                  <h4>{item.title}</h4>
+                  <p>{item.description}</p>
+                </div>
+              ))}
             </div>
 
             <div className="about-actions">
@@ -77,7 +72,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="image-wrapper">
-              <img src={`${process.env.PUBLIC_URL}/profile.jpg`} alt="Kandhal Shakil" />
+              <img src="/profile.jpg" alt="Kandhal Shakil" />
               <div className="image-glow"></div>
             </div>
           </motion.div>

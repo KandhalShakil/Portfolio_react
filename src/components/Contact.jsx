@@ -4,6 +4,7 @@ import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import emailjs from "@emailjs/browser";
+import { CONTACT_INFO, SOCIAL_LINKS } from '../data/portfolioData';
 import "./Contact.css";
 
 const Contact = () => {
@@ -220,26 +221,10 @@ const Contact = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: <FaEnvelope />,
-      label: "Email",
-      value: "kandhalshakil@gmail.com",
-      link: "mailto:kandhalshakil@gmail.com",
-    },
-    {
-      icon: <FaGithub />,
-      label: "GitHub",
-      value: "@KandhalShakil",
-      link: "https://github.com/KandhalShakil",
-    },
-    {
-      icon: <FaLinkedin />,
-      label: "LinkedIn",
-      value: "Kandhal Shakil",
-      link: "https://www.linkedin.com/in/kandhal-shakil-5311302b6",
-    },
-  ];
+  const contactInfo = CONTACT_INFO.map((info) => ({
+    ...info,
+    icon: info.label === 'Email' ? <FaEnvelope /> : info.label === 'GitHub' ? <FaGithub /> : <FaLinkedin />
+  }));
 
   return (
     <section className="contact" id="contact">
@@ -301,7 +286,6 @@ const Contact = () => {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <div className="contact-info-icon">{info.icon}</div>
                   <div className="contact-info-details">

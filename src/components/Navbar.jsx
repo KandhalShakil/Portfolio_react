@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
+import { NAV_ITEMS } from '../data/portfolioData';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -46,16 +47,6 @@ const Navbar = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const menuItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'education', label: 'Education' },
-    { id: 'achievements', label: 'Achievements' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
-  ];
-
   return (
     <motion.nav
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
@@ -75,7 +66,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="nav-menu desktop-menu">
-          {menuItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <li key={item.id} className="nav-item">
               <span className="nav-link" onClick={() => scrollToSection(item.id)}>
                 {item.label}
@@ -114,7 +105,7 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
             <ul className="mobile-menu-list">
-              {menuItems.map((item, index) => (
+              {NAV_ITEMS.map((item, index) => (
                 <motion.li
                   key={item.id}
                   initial={{ opacity: 0, x: 50 }}
@@ -129,7 +120,7 @@ const Navbar = () => {
                 className="mobile-cta"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: menuItems.length * 0.1 }}
+                transition={{ delay: NAV_ITEMS.length * 0.1 }}
                 onClick={() => scrollToSection('contact')}
               >
                 Let’s Talk

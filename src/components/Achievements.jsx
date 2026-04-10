@@ -2,51 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCertificate, FaExternalLinkAlt, FaEnvelope } from 'react-icons/fa';
 import { SiCoursera } from 'react-icons/si';
+import { CERTIFICATIONS, CERTIFICATE_MESSAGES } from '../data/portfolioData';
 import './Achievements.css';
 
 const Achievements = () => {
-  // Certificate messages for the request functionality
-  const certificateMessages = {
-    'Introduction to Java': [
-      "Hello! I came across your portfolio and I'm impressed by your Java programming certification. Could you please share the certificate via email? I'd love to see the details of your achievement.",
-      "Hi there! I noticed you have a Java certification from Coursera. Would it be possible to receive a copy of this certificate through email? It looks very valuable for Java developers!",
-      "Greetings! Your Java programming certification caught my attention. I'm learning Java and would appreciate if you could email me the certificate details. Thank you!"
-    ],
-    'Inheritance and Data Structures in Java': [
-      "Hello! Your advanced Java certification in Data Structures and Inheritance is impressive. Could you please share the certificate via email? I'd love to see the advanced concepts covered.",
-      "Hi there! I noticed your specialization in Java Data Structures. Would it be possible to receive a copy of this certificate through email? It's exactly what I'm studying!",
-      "Greetings! Your Java Data Structures and Inheritance certification caught my attention. I'm working on similar concepts and would appreciate the certificate details via email."
-    ],
-    'Introduction to HTML, CSS, & JavaScript': [
-      "Hello! Your web development foundation certificate is impressive. Could you please share the HTML, CSS & JavaScript certificate via email? I'd love to see the curriculum details.",
-      "Hi there! I noticed your comprehensive web development certification. Would it be possible to receive a copy through email? It covers exactly what I need to learn!",
-      "Greetings! Your front-end development certification caught my attention. I'm starting web development and would appreciate the certificate details via email."
-    ],
-    'Exploratory Data Analysis for Machine Learning': [
-      "Hello! Your Machine Learning and Data Analysis certification is impressive. Could you please share the certificate via email? I'd love to see the ML techniques covered.",
-      "Hi there! I noticed your specialization in Data Analysis for ML. Would it be possible to receive a copy of this certificate through email? It's highly relevant to my field!",
-      "Greetings! Your Machine Learning Data Analysis certification caught my attention. I'm working in ML and would appreciate the certificate details via email."
-    ],
-    'Developing Front-End Apps with React': [
-      "Hello! Your React development certification is impressive. Could you please share the certificate via email? I'd love to see the React concepts covered.",
-      "Hi there! I noticed your specialization in React front-end development. Would it be possible to receive a copy through email? It's exactly what I'm learning!",
-      "Greetings! Your React development certification caught my attention. I'm working with React and would appreciate the certificate details via email."
-    ],
-    'Prompt Engineering: The Skill of Asking AI Right': [
-      "Hello! I came across your portfolio and I'm impressed by your Prompt Engineering certification. Could you please share the certificate via email? I'd love to see the details of your achievement.",
-      "Hi there! I noticed you have a Prompt Engineering certificate from Wayspire. Would it be possible to receive a copy of this certificate through email? It looks very interesting!",
-      "Greetings! Your Prompt Engineering certification caught my attention. I'm working in a similar field and would appreciate if you could email me the certificate details. Thank you!"
-    ],
-    'Back-End Development with .NET': [
-      "Hello! I saw your Back-End Development with .NET certificate and was really impressed. Could you please share the certificate details via email?",
-      "Hi there! Your .NET back-end certification looks very relevant to my learning path. Would you be able to send a copy through email?",
-      "Greetings! I noticed your Coursera .NET certificate and would appreciate it if you could share the credential details via email."
-    ]
-  };
-
   // Function to scroll to contact section and fill message
   const handleRequestCertificate = (certName) => {
-    const messages = certificateMessages[certName] || certificateMessages['Prompt Engineering: The Skill of Asking AI Right'];
+    const messages = CERTIFICATE_MESSAGES[certName] || CERTIFICATE_MESSAGES['Prompt Engineering: The Skill of Asking AI Right'];
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
     
     // Scroll to contact section
@@ -90,64 +52,10 @@ const Achievements = () => {
     }
   };
 
-  const certifications = [
-    {
-      name: 'Introduction to Java',
-      provider: 'Coursera',
-      year: '2024',
-      icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/TUX8P7X8ELQD',
-      image: '/images/certificates/Introduction to Java.png'
-    },
-    {
-      name: 'Inheritance and Data Structures in Java',
-      provider: 'Coursera',
-      year: '2024',
-      icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/H8XTMHMZSYZX',
-      image: '/images/certificates/Inheritance and Data Structures in Java.png'
-    },
-    {
-      name: 'Introduction to HTML, CSS, & JavaScript',
-      provider: 'Coursera',
-      year: '2024',
-      icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/2MWVBEWX2M8N',
-      image: '/images/certificates/Introduction to HTML, CSS, & JavaScript.png'
-    },
-    {
-      name: 'Exploratory Data Analysis for Machine Learning',
-      provider: 'Coursera',
-      year: '2024',
-      icon: <SiCoursera />,
-      link: 'https://www.coursera.org/account/accomplishments/verify/NBH6CSAM16MD',
-      image: '/images/certificates/Exploratory Data Analysis for Machine Learning.png'
-    },
-    {
-      name: 'Developing Front-End Apps with React',
-      provider: 'Coursera',
-      year: '2024',
-      icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/0178B60775HH',
-      image: '/images/certificates/Developing Front-End Apps with React.png'
-    },
-    {
-      name: 'Prompt Engineering: The Skill of Asking AI Right',
-      provider: 'Wayspire',
-      year: '2024',
-      icon: <FaCertificate />,
-      link: 'https://drive.google.com/file/d/1gjw4euDn_6bJ16aXcIA2te8-NSo7lKld/view?usp=sharing',
-      image: '/images/certificates/prompt_engg.png'
-    },
-    {
-      name: 'Back-End Development with .NET',
-      provider: 'Coursera',
-      year: '2026',
-      icon: <SiCoursera />,
-      link: 'https://coursera.org/verify/1XALENBM84H6',
-      image: '/images/certificates/Back-End_Development_with_DotNet.png'
-    }
-  ];
+  const certifications = CERTIFICATIONS.map((cert) => ({
+    ...cert,
+    icon: cert.icon === 'certificate' ? <FaCertificate /> : <SiCoursera />
+  }));
 
   return (
     <section className="achievements" id="achievements">
