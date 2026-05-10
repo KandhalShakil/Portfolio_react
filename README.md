@@ -1,209 +1,106 @@
-﻿# Kandhal Shakil - Portfolio Website
+<div align="center">
 
-A modern, immersive Python developer portfolio built with React, featuring interactive 3D elements, smooth animations, and a professional dark theme.
+# 🌌 KANDHAL TECH | 6D PORTFOLIO
+### *The Digital Architecture of the Next Generation*
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live-7c5cff?style=for-the-badge)](https://kandhalshakil.github.io/Portfolio_react)
-[![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Three.js](https://img.shields.io/badge/Three.js-0.182.0-000000?style=for-the-badge&logo=three.js)](https://threejs.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Three.js](https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer-motion&logoColor=white)](https://www.framer.com/motion/)
 
-## Features
+<br />
 
-- **Deep Dark Theme** - Professional dark mode with purple (#7c5cff) and cyan (#4cc9f0) accents
-- **3D Background** - Animated Three.js starfield creating immersive depth
-- **Framer Motion Animations** - Smooth fade-ins, slide-ups, and interactive hover effects
-- **Fully Responsive** - Optimized for all devices from mobile to 4K displays
-- **Optimized Performance** - Single WebGL context, lazy loading, efficient rendering
-- **Contact Form** - EmailJS integration with OTP verification system
-- **Interactive Skills Grid** - Click-to-explore tech stack showcase
-- **Certification Gallery** - 6 verified certifications with live links
+🚀 **[Live Experience](https://www.kandhal.tech)** • 📂 **[View Projects](#-project-showcase)** • ✉️ **[Contact Me](#-get-in-touch)**
 
-## Tech Stack
-
-### Frontend
-- React 19.2.0
-- Three.js & @react-three/fiber
-- Framer Motion
-- CSS3 with custom properties
-
-### Backend/Services
-- EmailJS for contact form
-- GitHub Pages hosting
-
-### Tools
-- CRACO for webpack configuration
-- ESLint for code quality
-- React Testing Library
-
-## Sections
-
-1. **Hero** - Landing with Python developer tagline, stats (2+ projects, 6 certifications)
-2. **About** - Professional introduction with highlight cards
-3. **Skills** - Interactive grid with:
-   - Backend: Python, Java, Django, FastAPI
-   - Data & Algorithms: Data Structures, Pandas, NumPy, SQL
-   - Frontend & Tools: HTML, JavaScript, Postman, Git
-   - Database: MongoDB
-4. **Education** - Academic timeline
-5. **Achievements** - 6 Coursera certifications
-6. **Projects** - Featured work:
-   - Personal Portfolio (React + Three.js)
-   - Invoice System (Django + Python)
-   - SKY Event (HTML/CSS/JS)
-7. **Contact** - Form with OTP verification + social links
-8. **Footer** - Copyright and social media
-
-## Getting Started
-
-### Prerequisites
-- Node.js >= 14.0.0
-- npm >= 6.14.0
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/KandhalShakil/Portfolio_react.git
-cd Portfolio_react
-```
-
-2. Install dependencies
-```bash
-npm install
-```
-
-3. Create .env file
-```env
-REACT_APP_GEMINI_API_KEY=your_api_key
-GENERATE_SOURCEMAP=false
-```
-
-4. Start development server
-```bash
-npm start
-```
-
-Open [http://localhost:3000/Portfolio_react](http://localhost:3000/Portfolio_react)
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Deploy to GitHub Pages
-
-```bash
-npm run deploy
-```
-
-## Project Structure
-
-```
-Portfolio_react/
-├── public/
-│   ├── index.html
-│   ├── profile.jpg
-│   └── images/certificates/
-├── src/
-│   ├── components/
-│   │   ├── 3D/
-│   │   │   ├── Scene3D.jsx      # Background starfield
-│   │   │   ├── Hero3D.jsx       # Hero section
-│   │   │   ├── Skills3D.jsx     # Skills grid
-│   │   │   └── Projects3D.jsx   # Projects
-│   │   ├── Navbar.jsx/css
-│   │   ├── About.jsx/css
-│   │   ├── Education.jsx/css
-│   │   ├── Achievements.jsx/css
-│   │   ├── Contact.jsx/css
-│   │   └── Footer.jsx/css
-│   ├── App.jsx
-│   ├── App.css
-│   └── index.css
-├── craco.config.js
-├── package.json
-└── README.md
-```
-
-## Key Features
-
-### WebGL Context Management
-- Single Canvas strategy to prevent context loss
-- Event listeners for context recovery
-- Performance optimizations (reduced stars, disabled antialiasing)
-
-### Animation Strategy
-- Framer Motion for all 2D UI animations
-- Viewport detection with `whileInView`
-- Stagger effects for lists and grids
-
-### Responsive Design
-- Mobile-first approach
-- Breakpoints: 768px (tablet), 1024px (desktop), 1440px (large)
-- Touch-friendly navigation
-
-## Configuration
-
-### EmailJS Setup
-1. Create account at [EmailJS](https://www.emailjs.com/)
-2. Configure email service
-3. Create template
-4. Add credentials to Contact.jsx
-
-### GitHub Pages
-1. Set `homepage` in package.json
-2. Install: `npm install gh-pages --save-dev`
-3. Run: `npm run deploy`
-
-## Troubleshooting
-
-### Images Not Loading
-- Ensure images are in `public/` folder
-- Use `process.env.PUBLIC_URL` prefix for paths
-
-### WebGL Context Lost
-- Only one Canvas instance is used (Scene3D.jsx)
-- Context recovery handlers are in place
-
-### Build Issues
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-## Performance
-
-- Lighthouse Score: 95+ Performance
-- First Contentful Paint: < 1.5s
-- Bundle Size: ~250KB gzipped
-
-## Contributing
-
-Contributions welcome! Please:
-1. Fork the project
-2. Create feature branch (`git checkout -b feature/Feature`)
-3. Commit changes (`git commit -m 'Add Feature'`)
-4. Push to branch (`git push origin feature/Feature`)
-5. Open Pull Request
-
-## License
-
-MIT License - see LICENSE file for details
-
-## Author
-
-**Kandhal Shakil**
-- Portfolio: [kandhal.tech](https://www.kandhal.tech)
-- GitHub: [@KandhalShakil](https://github.com/KandhalShakil)
-- LinkedIn: [Kandhal Shakil](https://www.linkedin.com/in/kandhal-shakil/)
-
-## Acknowledgments
-
-- React Three Fiber - 3D in React
-- Framer Motion - Animation library
-- Three.js - WebGL framework
-- EmailJS - Contact form service
+<br />
 
 ---
 
-Made with care by Kandhal Shakil | Star this repo if you like it!
+### 🎥 THE EXPERIENCE
+A high-performance, cinematic digital portfolio engineered with **React 19**, **Three.js**, and **Tailwind v4**. This isn't just a website; it's a 6D immersive environment designed to showcase technical mastery through movement, depth, and precision.
+
+<img src="https://raw.githubusercontent.com/KandhalShakil/Portfolio_react/main/public/images/projects/portfolio.png" width="100%" alt="Portfolio Preview" style="border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);" />
+
+</div>
+
+---
+
+### ✨ KEY FEATURES
+
+| Feature | Description | Tech |
+| :--- | :--- | :--- |
+| **6D Particles** | Interactive 3D starfields and particle systems. | `React Three Fiber` |
+| **Cinematic Motion** | Ultra-smooth section transitions and hover physics. | `Framer Motion` |
+| **Fluid UI** | Perfectly responsive architecture across all devices. | `Tailwind v4` |
+| **Secure OTP** | Production-grade contact verification system. | `EmailJS + custom logic` |
+| **Lazy Loading** | High-speed performance with code-splitting. | `React.lazy` |
+
+<br />
+
+### 🛠️ TECH STACK
+
+<details open>
+<summary><b>Frontend Architecture</b></summary>
+<br />
+<img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
+<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+<img src="https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white" />
+<img src="https://img.shields.io/badge/framer--motion-0055FF?style=for-the-badge&logo=framer-motion&logoColor=white" />
+<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+</details>
+
+<details>
+<summary><b>Backend & Tools</b></summary>
+<br />
+<img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
+<img src="https://img.shields.io/badge/django-%23092e20.svg?style=for-the-badge&logo=django&logoColor=white" />
+<img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" />
+<img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" />
+</details>
+
+<br />
+
+### 📂 PROJECT SHOWCASE
+
+#### 🦾 SchemeSnap AI
+AI platform to simplify scheme details and generate multilingual action plans.
+`Python` • `Django` • `React` • `Groq AI`
+
+#### 📊 TaskForge
+Full-stack project management SaaS with workspaces and Kanban workflows.
+`Vite` • `DRF` • `PostgreSQL` • `Kanban`
+
+---
+
+### 🚀 QUICK START
+
+```bash
+# Clone the repository
+git clone https://github.com/KandhalShakil/Portfolio_react.git
+
+# Install dependencies
+npm install
+
+# Launch development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+<br />
+
+### 🤝 GET IN TOUCH
+
+<div align="center">
+
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KandhalShakil)
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kandhal-shakil-5311302b6)
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/kandhalshakil)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kandhalshakil@gmail.com)
+
+<br />
+
+*Designed with ❤️ by **Kandhal Shakil***
+
+</div>
