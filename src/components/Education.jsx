@@ -1,53 +1,54 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { EDUCATION_ITEMS } from '../data/portfolioData';
 import './Education.css';
 
 const Education = () => {
   return (
-    <section className="education" id="education">
-      <div className="section-divider"></div>
-      
+    <section className="education-section" id="education">
       <div className="education-container">
-        <motion.h2 
-          className="section-title gradient-text"
-          initial={{ opacity: 0, y: -20 }}
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Education
-        </motion.h2>
-        <p className="section-subtitle">My academic journey</p>
-        
-        <div className="education-timeline">
+          <span className="section-subtitle">Academic Path</span>
+          <h2 className="section-title">Education</h2>
+          <p className="section-description">
+            A chronicle of my academic journey and technical foundation.
+          </p>
+        </motion.div>
+
+        <div className="timeline-container">
+          <div className="timeline-line"></div>
+
           {EDUCATION_ITEMS.map((item, index) => (
             <motion.div
               key={index}
               className="timeline-item"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
             >
-              <div className="timeline-marker">
-                <FontAwesomeIcon icon={faGraduationCap} />
-              </div>
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <div>
-                    <h3 className="experience-title">{item.title}</h3>
-                    <p className="experience-company">{item.company}</p>
-                  </div>
-                  <span className="experience-duration">{item.duration}</span>
+              <div className="timeline-dot"></div>
+
+              <div className="education-card">
+                <div className="card-header">
+                  <span className="duration">{item.duration}</span>
+                  <h3 className="degree">{item.title}</h3>
+                  <p className="institution">{item.company}</p>
                 </div>
-                <ul className="experience-points">
-                  {item.points.map((point, idx) => (
-                    <li key={idx}>{point}</li>
-                  ))}
-                </ul>
+
+                <div className="card-content">
+                  <ul className="points-list">
+                    {item.points.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </motion.div>
           ))}

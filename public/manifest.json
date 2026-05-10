@@ -1,11 +1,11 @@
-﻿{
+{
   "short_name": "Kandhal Shakil",
   "name": "Kandhal Shakil - Python Developer Portfolio",
   "icons": [
     {
-      "src": "logo.jpg",
+      "src": "/public/favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ],
   "start_url": "/",

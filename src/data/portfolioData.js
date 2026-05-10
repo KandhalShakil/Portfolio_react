@@ -20,7 +20,7 @@ export const NAV_ITEMS = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'education', label: 'Education' },
-  { id: 'achievements', label: 'Achievements' },
+  { id: 'certifications', label: 'Certifications' },
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' }
 ];
@@ -96,7 +96,8 @@ export const CERTIFICATIONS = [
     year: '2024',
     icon: 'coursera',
     link: 'https://coursera.org/verify/TUX8P7X8ELQD',
-    image: '/images/certificates/Introduction to Java.png'
+    image: '/images/certificates/Introduction to Java.png',
+    credentialId: 'TUX8P7X8ELQD'
   },
   {
     name: 'Inheritance and Data Structures in Java',
@@ -104,7 +105,8 @@ export const CERTIFICATIONS = [
     year: '2024',
     icon: 'coursera',
     link: 'https://coursera.org/verify/H8XTMHMZSYZX',
-    image: '/images/certificates/Inheritance and Data Structures in Java.png'
+    image: '/images/certificates/Inheritance and Data Structures in Java.png',
+    credentialId: 'H8XTMHMZSYZX'
   },
   {
     name: 'Introduction to HTML, CSS, & JavaScript',
@@ -112,7 +114,8 @@ export const CERTIFICATIONS = [
     year: '2024',
     icon: 'coursera',
     link: 'https://coursera.org/verify/2MWVBEWX2M8N',
-    image: '/images/certificates/Introduction to HTML, CSS, & JavaScript.png'
+    image: '/images/certificates/Introduction to HTML, CSS, & JavaScript.png',
+    credentialId: '2MWVBEWX2M8N'
   },
   {
     name: 'Exploratory Data Analysis for Machine Learning',
@@ -120,7 +123,8 @@ export const CERTIFICATIONS = [
     year: '2024',
     icon: 'coursera',
     link: 'https://www.coursera.org/account/accomplishments/verify/NBH6CSAM16MD',
-    image: '/images/certificates/Exploratory Data Analysis for Machine Learning.png'
+    image: '/images/certificates/Exploratory Data Analysis for Machine Learning.png',
+    credentialId: 'NBH6CSAM16MD'
   },
   {
     name: 'Developing Front-End Apps with React',
@@ -128,7 +132,8 @@ export const CERTIFICATIONS = [
     year: '2024',
     icon: 'coursera',
     link: 'https://coursera.org/verify/0178B60775HH',
-    image: '/images/certificates/Developing Front-End Apps with React.png'
+    image: '/images/certificates/Developing Front-End Apps with React.png',
+    credentialId: '0178B60775HH'
   },
   {
     name: 'Prompt Engineering: The Skill of Asking AI Right',
@@ -136,7 +141,8 @@ export const CERTIFICATIONS = [
     year: '2024',
     icon: 'certificate',
     link: 'https://drive.google.com/file/d/1gjw4euDn_6bJ16aXcIA2te8-NSo7lKld/view?usp=sharing',
-    image: '/images/certificates/prompt_engg.png'
+    image: '/images/certificates/prompt_engg.png',
+    credentialId: 'WAY-2024-PE-092'
   },
   {
     name: 'Back-End Development with .NET',
@@ -144,7 +150,8 @@ export const CERTIFICATIONS = [
     year: '2026',
     icon: 'coursera',
     link: 'https://coursera.org/verify/1XALENBM84H6',
-    image: '/images/certificates/Back-End_Development_with_DotNet.png'
+    image: '/images/certificates/Back-End_Development_with_DotNet.png',
+    credentialId: '1XALENBM84H6'
   }
 ];
 
@@ -153,7 +160,7 @@ export const PROJECTS = [
     title: 'Personal Portfolio',
     category: 'Web',
     description: 'React portfolio showcasing projects and technical expertise with modern animations',
-    image: '/profile.jpg',
+    image: '/images/projects/portfolio.png',
     tags: ['React', 'Framer Motion', 'Responsive', 'CSS3'],
     liveLink: 'https://www.kandhal.tech',
     codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
@@ -162,7 +169,7 @@ export const PROJECTS = [
     title: 'Kandhal Invoice System',
     category: 'SaaS',
     description: 'Full-featured invoice management system with PDF generation and client tracking',
-    image: '🧾',
+    image: '/images/projects/invoice.png',
     tags: ['Python', 'Django', 'PDF Generation', 'JavaScript'],
     liveLink: 'https://www.invoice.kandhal.tech',
     codeLink: 'https://github.com/KandhalShakil/Invoice_system',
@@ -172,7 +179,7 @@ export const PROJECTS = [
     title: 'SKY Event',
     category: 'Web',
     description: 'Responsive event management and promotion website with modern design',
-    image: 'https://github.com/KandhalShakil/Sky_Event/blob/main/logo.jpg?raw=true',
+    image: '/images/projects/sky_event.png',
     tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
     liveLink: 'https://sky-event.vercel.app/',
     codeLink: 'https://github.com/KandhalShakil/Sky_Event'
@@ -181,7 +188,7 @@ export const PROJECTS = [
     title: 'SchemeSnap AI',
     category: 'AI',
     description: 'AI platform to simplify scheme details, check eligibility, and generate multilingual action plans.',
-    image: 'https://raw.githubusercontent.com/KandhalShakil/SchemeSnap-AI/71662c6fdf917cd0d2d17facba3512e861b0af48/frontend/public/favicon.svg',
+    image: '/images/projects/schemesnap.png',
     tags: ['Python', 'Django', 'DRF', 'React', 'Vite', 'Groq AI'],
     liveLink: 'https://www.schemesnap-ai.kandhal.tech',
     codeLink: 'https://github.com/KandhalShakil/SchemeSnap-AI'
@@ -190,7 +197,7 @@ export const PROJECTS = [
     title: 'Weather Dashboard',
     category: 'Web',
     description: 'Full-stack weather dashboard with real-time conditions, AQI insights, and forecast tracking.',
-    image: 'https://raw.githubusercontent.com/KandhalShakil/Weather-Intelligence-Dashboard/80b25fc9e7ff3ca99b0e6d9352564febc5b6996a/frontend/favicon.svg',
+    image: '/images/projects/weather.png',
     tags: ['.NET', 'C#', 'HTML', 'JavaScript', 'OpenWeather API'],
     liveLink: 'https://www.weather-intelligence-dashboard.kandhal.tech',
     codeLink: 'https://github.com/KandhalShakil/Weather-Intelligence-Dashboard'
@@ -199,7 +206,7 @@ export const PROJECTS = [
     title: 'Sorting Algorithm Performance Analyzer',
     category: 'Web',
     description: 'Interactive analyzer to compare sorting algorithms using execution time, comparisons, and swaps.',
-    image: 'https://opengraph.githubassets.com/1/KandhalShakil/Sorting-Algorithm-Performance-Analyzer',
+    image: '/images/projects/sorting.png',
     tags: ['HTML', 'CSS', 'JavaScript', 'Algorithms', 'Performance API'],
     liveLink: 'http://sorting-algorithm-performance-analyzer.kandhal.tech',
     codeLink: 'https://github.com/KandhalShakil/Sorting-Algorithm-Performance-Analyzer'
@@ -208,7 +215,7 @@ export const PROJECTS = [
     title: 'TaskForge',
     category: 'SaaS',
     description: 'Full-stack project management SaaS with workspaces, Kanban workflows, collaboration, and analytics.',
-    image: 'https://opengraph.githubassets.com/1/KandhalShakil/TaskForge',
+    image: '/images/projects/taskforge.png',
     tags: ['React', 'Vite', 'Django', 'DRF', 'PostgreSQL', 'Kanban'],
     liveLink: 'https://www.task-forge.kandhal.tech/workspaces',
     codeLink: 'https://github.com/KandhalShakil/TaskForge'

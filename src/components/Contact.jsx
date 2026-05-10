@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import emailjs from "@emailjs/browser";
@@ -20,34 +20,28 @@ const Contact = () => {
   const [showOtpPopup, setShowOtpPopup] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
   const [otpError, setOtpError] = useState("");
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes
+  const [timeLeft, setTimeLeft] = useState(300);
   const otpInputRefs = useRef([]);
 
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     submitted: false,
     error: null,
+    otpSending: false,
   });
 
-  // Timer for OTP expiry
   useEffect(() => {
     if (!showOtpPopup || timeLeft <= 0) return;
-
-    const timer = setTimeout(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 1000);
-
+    const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
     return () => clearTimeout(timer);
   }, [showOtpPopup, timeLeft]);
 
-  // Format time (mm:ss)
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  // Generate 6-digit OTP
   const generateOtp = () => {
     const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
     setGeneratedOtp(newOtp);
@@ -56,444 +50,277 @@ const Contact = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Send OTP via EmailJS
   const sendOtpEmail = async (email, otpCode) => {
     try {
-      // Replace these with your EmailJS credentials
       await emailjs.send(
-        "service_emks25r", // Your EmailJS Service ID
-        "template_h8r9vlo", // Your EmailJS Template ID
-        {
-          passcode: otpCode,
-          email: email,
-          message: `Your OTP verification code is: ${otpCode}. This code will expire in 5 minutes.`,
-        },
-        'HiT1qgF3NG4BIwyQY' , // Replace with your EmailJS Public Key
+        "service_emks25r",
+        "template_h8r9vlo",
+        { passcode: otpCode, email: email, message: `Your OTP verification code is: ${otpCode}.` },
+        'HiT1qgF3NG4BIwyQY'
       );
-      console.log("✅ OTP sent successfully!");
       return true;
     } catch (error) {
-      console.error("❌ Failed to send OTP:", error);
-      setOtpError("Failed to send OTP. Please try again.");
+      setOtpError("Failed to send OTP.");
       return false;
     }
   };
 
-  // Handle form submission - show OTP popup
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formStatus.otpSending) return; // Prevent multi-click spam
 
-    if (
-      !formData.email ||
-      !formData.name ||
-      !formData.subject ||
-      !formData.message
-    ) {
-      setFormStatus({
-        submitting: false,
-        submitted: false,
-        error: "Please fill in all fields",
-      });
+    if (!formData.email || !formData.name || !formData.subject || !formData.message) {
+      setFormStatus({ ...formStatus, error: "Please fill in all fields" });
       return;
     }
 
+    setFormStatus(prev => ({ ...prev, otpSending: true, error: null }));
+    
     const newOtp = generateOtp();
     const sent = await sendOtpEmail(formData.email, newOtp);
-
+    
     if (sent) {
       setShowOtpPopup(true);
       setOtpVerified(false);
       setOtpError("");
       setOtp(["", "", "", "", "", ""]);
-
-      setTimeout(() => {
-        if (otpInputRefs.current[0]) {
-          otpInputRefs.current[0].focus();
-        }
-      }, 100);
+      setFormStatus(prev => ({ ...prev, otpSending: false }));
+      setTimeout(() => otpInputRefs.current[0]?.focus(), 100);
+    } else {
+      setFormStatus(prev => ({ ...prev, otpSending: false, error: "Failed to send verification code. Please try again." }));
     }
   };
 
-  // Handle OTP input
-  const handleOtpChange = (index, value) => {
-    if (!/^[0-9]?$/.test(value)) return;
-
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
-
-    if (value && index < 5) {
-      otpInputRefs.current[index + 1].focus();
-    }
-
-    if (otpError) setOtpError("");
-  };
-
-  const handleOtpKeyDown = (index, e) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      otpInputRefs.current[index - 1].focus();
-    }
-  };
-
-  const handleOtpPaste = (e) => {
-    e.preventDefault();
-    const pastedData = e.clipboardData.getData("text");
-    if (/^[0-9]{6}$/.test(pastedData)) {
-      const newOtp = pastedData.split("");
-      setOtp(newOtp);
-      otpInputRefs.current[5].focus();
-    }
-  };
-
-  // Verify OTP and submit form
-  const verifyOtp = async () => {
-    const enteredOtp = otp.join("");
-
-    if (timeLeft <= 0) {
-      setOtpError("OTP has expired. Please request a new one.");
-      return;
-    }
-
-    if (enteredOtp === generatedOtp) {
-      setOtpVerified(true);
+  const handleResendOtp = async () => {
+    if (timeLeft > 0 || formStatus.otpSending) return;
+    
+    setFormStatus(prev => ({ ...prev, otpSending: true }));
+    const newOtp = generateOtp();
+    const sent = await sendOtpEmail(formData.email, newOtp);
+    
+    if (sent) {
       setOtpError("");
+      setOtp(["", "", "", "", "", ""]);
+      setFormStatus(prev => ({ ...prev, otpSending: false }));
+      setTimeout(() => otpInputRefs.current[0]?.focus(), 100);
+    } else {
+      setFormStatus(prev => ({ ...prev, otpSending: false }));
+      setOtpError("Failed to resend code.");
+    }
+  };
 
+  const verifyOtp = async () => {
+    if (otp.join("") === generatedOtp) {
+      setOtpVerified(true);
       setTimeout(async () => {
         setShowOtpPopup(false);
         await submitForm();
       }, 1500);
     } else {
-      setOtpError("Invalid OTP. Please try again.");
+      setOtpError("Invalid OTP.");
     }
   };
 
-  // Submit form to Formspree
   const submitForm = async () => {
     setFormStatus({ submitting: true, submitted: false, error: null });
-
     try {
       const response = await fetch("https://formspree.io/f/xzddgjdl", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          _subject: `Portfolio Contact: ${formData.subject}`,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, _subject: `Portfolio Contact: ${formData.subject}` }),
       });
-
       if (response.ok) {
         setFormStatus({ submitting: false, submitted: true, error: null });
         setFormData({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => {
-          setFormStatus({ submitting: false, submitted: false, error: null });
-        }, 5000);
       } else {
-        throw new Error("Failed to send message");
+        throw new Error("Failed to send");
       }
     } catch (error) {
-      setFormStatus({
-        submitting: false,
-        submitted: false,
-        error: "Failed to send message. Please try again.",
-      });
+      setFormStatus({ submitting: false, submitted: false, error: "Failed to send message." });
     }
   };
-
-  // Resend OTP
-  const resendOtp = async () => {
-    const newOtp = generateOtp();
-    await sendOtpEmail(formData.email, newOtp);
-    setOtp(["", "", "", "", "", ""]);
-    setOtpError("");
-    if (otpInputRefs.current[0]) {
-      otpInputRefs.current[0].focus();
-    }
-  };
-
-  const contactInfo = CONTACT_INFO.map((info) => ({
-    ...info,
-    icon: info.label === 'Email' ? <FaEnvelope /> : info.label === 'GitHub' ? <FaGithub /> : <FaLinkedin />
-  }));
 
   return (
-    <section className="contact" id="contact">
-      <div className="section-divider"></div>
-
-      <div className="contact-container">
-        <motion.h2
-          className="section-title gradient-text"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+    <section className="contact-6d" id="contact">
+      <div className="contact-container-6d">
+        <motion.div
+          className="contact-header-6d"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          Get In Touch
-        </motion.h2>
-        <motion.p
-          className="section-subtitle"
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          Let's work together on your next project
-        </motion.p>
+          <span className="label-6d">COMMUNICATION LINK</span>
+          <h2 className="title-6d">INITIALIZE <span className="gradient-6d">CONNECTION</span></h2>
+        </motion.div>
 
-        <div className="contact-intro">
-          <div>
-            <h3>Let’s build something memorable</h3>
-            <p>
-              Share your project goals and I’ll help craft the right solution—
-              from strategy to launch-ready UI.
-            </p>
-          </div>
-          <div className="contact-chips">
-            <span>Fast replies</span>
-            <span>Remote-friendly</span>
-            <span>Full-stack delivery</span>
-          </div>
-        </div>
-
-        <div className="contact-grid">
-          {/* Contact Info */}
+        <div className="contact-grid-6d">
+          {/* Left Side: Info */}
           <motion.div
-            className="contact-panel contact-info"
-            initial={{ opacity: 0, x: -30 }}
+            className="contact-info-6d"
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
-            <h3 className="contact-info-title">Contact Information</h3>
-            <div className="contact-info-list">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-info-item"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="contact-info-icon">{info.icon}</div>
-                  <div className="contact-info-details">
-                    <span className="contact-info-label">{info.label}</span>
-                    <span className="contact-info-value">{info.value}</span>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
+            <div className="info-terminal glass-6d">
+              <div className="terminal-header">
+                <div className="terminal-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <span className="terminal-title">IDENTITY DATA</span>
+              </div>
 
-            <div className="social-links">
-              <p>Connect on social media</p>
-              <div className="social-icons">
-                <a
-                  href="https://twitter.com/kandhalshakil"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaTwitter />
-                </a>
-                <a
-                  href="https://github.com/KandhalShakil"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              <div className="info-items">
+                <div className="info-item-6d">
+                  <div className="info-icon-6d"><FaEnvelope /></div>
+                  <div className="info-text-6d">
+                    <span className="info-label">EMAIL</span>
+                    <a href="mailto:kandhalshakil@gmail.com" style={{ textDecoration: 'none' }}>kandhalshakil@gmail.com</a>
+                  </div>
+                </div>
+
+                <div className="info-item-6d">
+                  <div className="info-icon-6d"><FaMapMarkerAlt /></div>
+                  <div className="info-text-6d">
+                    <span className="info-label">GEOLOCATION</span>
+                    <span>Ahmedabad, Gujarat, India</span>
+                  </div>
+                </div>
+
+                <div className="info-item-6d">
+                  <div className="info-icon-6d"><div className="status-pulse"></div></div>
+                  <div className="info-text-6d">
+                    <span className="info-label">AVAILABILITY</span>
+                    <span className="status-text">OPEN FOR FREELANCE WORK</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="social-grid-6d">
+                <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" className="social-card-6d glass-6d">
                   <FaGithub />
                 </a>
-                <a
-                  href="https://www.linkedin.com/in/kandhal-shakil-5311302b6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://linkedin.com/in/kandhal-shakil-5311302b6" target="_blank" rel="noreferrer" className="social-card-6d glass-6d">
                   <FaLinkedin />
+                </a>
+                <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" className="social-card-6d glass-6d">
+                  <FaTwitter />
                 </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right Side: Form */}
           <motion.div
-            className="contact-panel contact-form-wrapper"
-            initial={{ opacity: 0, x: 30 }}
+            className="contact-form-6d-container"
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
             {formStatus.submitted ? (
-              <div className="success-message-card">
-                <FontAwesomeIcon
-                  icon={faCheckCircle}
-                  className="success-icon"
-                />
-                <h3>Message Sent Successfully!</h3>
-                <p>Thank you for reaching out. I'll get back to you soon.</p>
-                <button
-                  onClick={() =>
-                    setFormStatus({
-                      submitting: false,
-                      submitted: false,
-                      error: null,
-                    })
-                  }
-                  className="submit-btn"
-                >
-                  Send Another Message
+              <motion.div
+                className="success-terminal glass-6d"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+              >
+                <div className="success-icon-wrapper">
+                  <FontAwesomeIcon icon={faCheckCircle} className="success-icon-6d" />
+                </div>
+                <h3>Verification Complete</h3>
+                <p>Your secure session has been initialized successfully. I will review your transmission and respond shortly.</p>
+                <button className="btn-6d primary-6d btn-success-cta" onClick={() => setFormStatus({ ...formStatus, submitted: false })}>
+                  Return to Dashboard
                 </button>
-              </div>
+              </motion.div>
             ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your name"
-                  />
+              <form className="contact-form-6d glass-6d" onSubmit={handleSubmit}>
+                <div className="form-row-6d">
+                  <div className="input-group-6d">
+                    <label>NAME</label>
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Enter your name..." />
+                    <div className="input-focus-glow"></div>
+                  </div>
+                  <div className="input-group-6d">
+                    <label>EMAIL</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="Enter uplink address..." />
+                    <div className="input-focus-glow"></div>
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your.email@example.com"
-                  />
+                <div className="input-group-6d">
+                  <label>SUBJECT</label>
+                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Define inquiry..." />
+                  <div className="input-focus-glow"></div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="subject">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    placeholder="What's this about?"
-                  />
+                <div className="input-group-6d">
+                  <label>MESSAGE</label>
+                  <textarea name="message" value={formData.message} onChange={handleChange} required rows="5" placeholder="Input transmission content..."></textarea>
+                  <div className="input-focus-glow"></div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows="5"
-                    placeholder="Your message..."
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="submit-btn"
-                  disabled={formStatus.submitting}
+                <button 
+                  type="submit" 
+                  className={`btn-6d primary magnetic-btn ${formStatus.otpSending ? 'loading' : ''}`} 
+                  disabled={formStatus.otpSending}
                 >
-                  {formStatus.submitting ? "Sending..." : "Send Message"}
+                  <FaPaperPlane className="btn-icon" />
+                  <span>{formStatus.otpSending ? "SENDING OTP..." : "EXECUTE TRANSMISSION"}</span>
+                  <div className="btn-glow"></div>
                 </button>
-
-                {formStatus.error && (
-                  <div className="form-message error">{formStatus.error}</div>
-                )}
+                {formStatus.error && <div className="form-error-msg">{formStatus.error}</div>}
               </form>
             )}
           </motion.div>
         </div>
       </div>
 
-      {/* OTP Verification Popup */}
-      {showOtpPopup && (
-        <div className="otp-overlay">
-          <motion.div
-            className="otp-popup"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <button
-              className="close-otp-btn"
-              onClick={() => setShowOtpPopup(false)}
-            >
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
+      {/* OTP Popup remains similar but styled 6D */}
+      <AnimatePresence>
+        {showOtpPopup && (
+          <div className="otp-overlay-6d">
+            <motion.div className="otp-terminal glass-6d" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }}>
+              <h3>SECURITY VERIFICATION</h3>
+              <p>ENCRYPTED CODE SENT TO {formData.email}</p>
 
-            <h2 className="otp-title">Verify Your Email</h2>
-            <p className="otp-message">
-              We've sent a 6-digit code to <strong>{formData.email}</strong>
-            </p>
-
-            {otpVerified ? (
-              <div className="otp-success">
-                <FontAwesomeIcon icon={faCheckCircle} />
-                <p>Verification successful! Sending your message...</p>
+              <div className="otp-inputs-6d">
+                {otp.map((digit, index) => (
+                  <input key={index} type="text" maxLength="1" value={digit} onChange={(e) => {
+                    const val = e.target.value;
+                    if (!/^\d*$/.test(val)) return;
+                    const newOtp = [...otp];
+                    newOtp[index] = val;
+                    setOtp(newOtp);
+                    if (val && index < 5) otpInputRefs.current[index + 1].focus();
+                  }} onKeyDown={(e) => {
+                    if (e.key === "Backspace" && !otp[index] && index > 0) otpInputRefs.current[index - 1].focus();
+                  }} ref={el => otpInputRefs.current[index] = el} className="otp-input-6d" />
+                ))}
               </div>
-            ) : (
-              <>
-                <div className={`otp-timer ${timeLeft <= 60 ? "warning" : ""}`}>
-                  {timeLeft > 0
-                    ? `Code expires in: ${formatTime(timeLeft)}`
-                    : "Code expired"}
-                </div>
 
-                <div className="otp-inputs">
-                  {otp.map((digit, index) => (
-                    <input
-                      key={index}
-                      type="text"
-                      inputMode="numeric"
-                      maxLength="1"
-                      value={digit}
-                      onChange={(e) => handleOtpChange(index, e.target.value)}
-                      onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                      onPaste={handleOtpPaste}
-                      ref={(ref) => (otpInputRefs.current[index] = ref)}
-                      className="otp-input"
-                      disabled={timeLeft <= 0}
-                    />
-                  ))}
-                </div>
+              <div className="otp-timer-6d">{formatTime(timeLeft)}</div>
+              {otpError && <div className="otp-error-6d">{otpError}</div>}
 
-                {otpError && <div className="otp-error">{otpError}</div>}
-
-                <button
-                  className="verify-otp-btn"
-                  onClick={verifyOtp}
-                  disabled={timeLeft <= 0 || otp.join("").length !== 6}
+              <button className="btn-6d primary-6d verify-main" onClick={verifyOtp} disabled={otp.join("").length !== 6 || otpVerified}>
+                {otpVerified ? "VERIFIED SUCCESS" : "VERIFY DATA"}
+              </button>
+              
+              <div className="otp-actions-row">
+                <button 
+                  className="resend-link" 
+                  onClick={handleResendOtp} 
+                  disabled={timeLeft > 0 || formStatus.otpSending}
                 >
-                  Verify OTP
+                  {formStatus.otpSending ? "SENDING..." : timeLeft > 0 ? `RESEND IN ${timeLeft}s` : "RESEND CODE"}
                 </button>
-
-                <button className="resend-otp-btn" onClick={resendOtp}>
-                  Resend OTP
-                </button>
-              </>
-            )}
-          </motion.div>
-        </div>
-      )}
+                <button className="abort-link" onClick={() => setShowOtpPopup(false)}>ABORT SESSION</button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

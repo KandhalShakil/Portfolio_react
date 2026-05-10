@@ -1,95 +1,127 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import {
-  FaExternalLinkAlt,
-  FaGithub,
-  FaGlobe,
-  FaRobot,
-  FaBolt,
-  FaCloudSun,
-  FaChartBar,
-  FaFileInvoice
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { 
+  FaExternalLinkAlt, 
+  FaGithub, 
+  FaChevronLeft, 
+  FaChevronRight,
+  FaRocket
 } from 'react-icons/fa';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { PROJECTS } from '../data/portfolioData';
 import './Projects.css';
 
 const Projects = () => {
-  const projectIcons = {
-    'Personal Portfolio': <FaGlobe />,
-    'SchemeSnap AI': <FaRobot />,
-    TaskForge: <FaBolt />,
-    'Weather Dashboard': <FaCloudSun />,
-    'Kandhal Invoice System': <FaFileInvoice />,
-    'Sorting Algorithm Performance Analyzer': <FaChartBar />
-  };
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   return (
-    <section className="projects" id="projects">
-      <div className="projects-container">
-        <motion.div
-          className="projects-header"
+    <section className="projects-section-proper" id="projects">
+      <div className="projects-container-proper">
+        <motion.div 
+          className="projects-header-proper"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
-          <div className="projects-label">MY WORK</div>
-          <h2 className="projects-title">
-            Featured <span className="highlight">Projects</span>
-          </h2>
-          <p className="projects-subtitle">A curated collection of products, dashboards, and intelligent tools</p>
+          <div className="header-top-row">
+            <div className="title-group">
+              <span className="badge-luxury">Selected Works</span>
+              <h2 className="projects-title-proper">Production <span className="gradient-text">Systems</span></h2>
+            </div>
+            <div className="carousel-controls-proper">
+              <button ref={prevRef} className="control-btn-proper" aria-label="Previous Project"><FaChevronLeft /></button>
+              <button ref={nextRef} className="control-btn-proper" aria-label="Next Project"><FaChevronRight /></button>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="projects-grid showcase-grid">
-          {PROJECTS.map((project, index) => (
-            <motion.article
-              key={project.title}
-              className="project-card showcase-card"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.42, delay: index * 0.06 }}
-            >
-              <div className="card-head">
-                <div className="card-icon-wrap">
-                  <span className="card-icon">{projectIcons[project.title] || <FaGlobe />}</span>
-                </div>
-                <span className={`card-category ${project.category.toLowerCase()}`}>{project.category}</span>
-              </div>
+        <div className="projects-slider-wrapper-proper">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={24}
+            slidesPerView={1}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onInit={(swiper) => {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+              swiper.navigation.init();
+              swiper.navigation.update();
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            breakpoints={{
+              768: { slidesPerView: 2 },
+              1200: { slidesPerView: 3 }
+            }}
+            className="projects-swiper-proper"
+          >
+            {PROJECTS.map((project, index) => (
+              <SwiperSlide key={project.title}>
+                <div className="project-card-proper">
+                  <div className="project-media-top">
+                    <img 
+                      src={project.image.startsWith('http') || project.image.startsWith('/') ? project.image : '/profile.jpg'} 
+                      alt={project.title} 
+                      className="project-img-proper"
+                    />
+                    <div className="project-badge-overlay">
+                      <span className="category-tag">{project.category}</span>
+                      <div className={`status-tag ${project.comingSoon ? 'dev' : 'live'}`}>
+                        <span className="status-dot"></span>
+                        {project.comingSoon ? 'DEV_MODE' : 'OPERATIONAL'}
+                      </div>
+                    </div>
+                  </div>
 
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                <div className="project-tags">
-                  {project.tags.slice(0, 5).map((tag) => (
-                    <span key={`${project.title}-${tag}`} className="tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
+                  <div className="project-info-middle">
+                    <h3 className="project-name-proper">{project.title}</h3>
+                    <p className="project-desc-proper">{project.description}</p>
+                    
+                    <div className="project-tech-tags">
+                      {project.tags.slice(0, 3).map(tag => (
+                        <span key={tag} className="tech-tag-proper">{tag}</span>
+                      ))}
+                      {project.tags.length > 3 && <span className="tech-tag-more">+{project.tags.length - 3}</span>}
+                    </div>
+                  </div>
 
-              <div className="project-actions-row">
-                {project.comingSoon ? (
-                  <>
-                    <span className="project-link action-btn muted">Coming Soon</span>
-                    <span className="project-link action-btn muted">Coming Soon</span>
-                  </>
-                ) : (
-                  <>
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link action-btn live-btn">
-                      Live <FaExternalLinkAlt />
-                    </a>
-                    <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="project-link action-btn code-btn">
-                      Code <FaGithub />
-                    </a>
-                  </>
-                )}
-              </div>
-            </motion.article>
-          ))}
+                  <div className="project-footer-bottom">
+                    {project.comingSoon ? (
+                      <div className="btn-locked-proper">
+                        <span>ACCESS_RESTRICTED</span>
+                      </div>
+                    ) : (
+                      <div className="btn-group-proper">
+                        <a href={project.liveLink} target="_blank" rel="noreferrer" className="btn-action-proper primary">
+                          <span>Launch</span>
+                          <FaExternalLinkAlt />
+                        </a>
+                        <a href={project.codeLink} target="_blank" rel="noreferrer" className="btn-action-proper secondary">
+                          <FaGithub />
+                          <span>Code</span>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>
   );
 };
 
-export default React.memo(Projects);
+export default Projects;

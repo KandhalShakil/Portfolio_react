@@ -15,117 +15,103 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when window is resized to desktop
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768 && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [mobileMenuOpen]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [mobileMenuOpen]);
-
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false); // Close mobile menu after clicking
+    if (window.scrollToSection) {
+      window.scrollToSection(id);
+      setMobileMenuOpen(false);
     }
-  };
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   return (
     <motion.nav
-      className={`navbar ${scrolled ? 'scrolled' : ''}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      className={`navbar-6d ${scrolled ? 'scrolled' : ''}`}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="navbar-container">
-        <button
-          className="navbar-logo"
-          onClick={() => scrollToSection('home')}
-          type="button"
-        >
-          <span className="logo-text">Kandhal</span>
-          <span className="logo-dot">.</span>
-        </button>
-
-        {/* Desktop Menu */}
-        <ul className="nav-menu desktop-menu">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.id} className="nav-item">
-              <span className="nav-link" onClick={() => scrollToSection(item.id)}>
-                {item.label}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="navbar-actions">
-          <button className="nav-cta" onClick={() => scrollToSection('contact')} type="button">
-            Let’s Talk
+      <div className="navbar-container-6d glass-6d">
+        {/* Left Section: Logo */}
+        <div className="nav-section-left">
+          <button className="logo-6d" onClick={() => scrollToSection('home')}>
+            <span className="logo-accent">KANDHAL SHAKIL</span>
           </button>
+        </div>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-            type="button"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
+        {/* Center Section: Desktop Nav Links */}
+        <div className="nav-section-center desktop-only">
+          <ul className="nav-links-6d">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.id} className="nav-item-6d">
+                <button onClick={() => scrollToSection(item.id)} className="nav-link-6d">
+                  {item.label}
+                  <div className="nav-hover-line"></div>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="nav-section-right">
+          <button className="navbar-cta-6d btn-6d primary desktop-only" onClick={() => scrollToSection('contact')}>
+            <span>CONNECT</span>
+            <div className="btn-glow"></div>
+          </button>
+          
+          <button className="hamburger-6d mobile-only" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <div className={`ham-line-wrapper ${mobileMenuOpen ? 'open' : ''}`}>
+              <span className="ham-line top"></span>
+              <span className="ham-line mid"></span>
+              <span className="ham-line bot"></span>
+            </div>
+            <div className="ham-glow"></div>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Panel */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="mobile-menu"
+            className="mobile-menu-panel-6d"
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <ul className="mobile-menu-list">
-              {NAV_ITEMS.map((item, index) => (
-                <motion.li
-                  key={item.id}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => scrollToSection(item.id)}
-                >
-                  {item.label}
-                </motion.li>
-              ))}
-              <motion.li
-                className="mobile-cta"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: NAV_ITEMS.length * 0.1 }}
-                onClick={() => scrollToSection('contact')}
+            <div className="mobile-panel-backdrop" onClick={() => setMobileMenuOpen(false)}></div>
+            <div className="mobile-panel-content glass-6d">
+              <div className="mobile-panel-header">
+                <span className="panel-label">NAVIGATION_SYSTEM</span>
+                <button className="close-panel" onClick={() => setMobileMenuOpen(false)}>×</button>
+              </div>
+              
+              <ul className="mobile-nav-links">
+                {NAV_ITEMS.map((item, idx) => (
+                  <motion.li 
+                    key={item.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                  >
+                    <button onClick={() => scrollToSection(item.id)} className="mobile-link">
+                      <span className="link-num">0{idx + 1}</span>
+                      <span className="link-text">{item.label}</span>
+                    </button>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <motion.div 
+                className="mobile-panel-footer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
               >
-                Let’s Talk
-              </motion.li>
-            </ul>
+                <button className="btn-6d primary full-width" onClick={() => scrollToSection('contact')}>
+                  CONNECT
+                </button>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

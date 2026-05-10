@@ -26,48 +26,37 @@ const iconMap = {
 
 const Skills = () => {
   return (
-    <section className="skills" id="skills">
-      <div className="section-divider"></div>
-      
+    <section className="skills-6d" id="skills">
       <div className="skills-container">
-        <motion.div 
-          className="skills-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.div
+          className="skills-header-6d"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <div className="skills-label">TECHNICAL EXPERTISE</div>
-          <h2 className="skills-title">
-            Skills & <span className="highlight">Technologies</span>
-          </h2>
-          <p className="skills-subtitle">Technologies I work with to build amazing solutions</p>
+          <div className="label-6d">NEURAL CAPABILITIES</div>
+          <h2 className="title-6d">CORE <span className="gradient-6d">INTELLIGENCE</span></h2>
         </motion.div>
-        
-        <div className="skills-grid">
-          {SKILL_CATEGORIES.map((category, categoryIndex) => (
+
+        <div className="skills-grid-6d">
+          {SKILL_CATEGORIES.map((category, idx) => (
             <motion.div
-              key={categoryIndex}
-              className="skill-category"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+              key={idx}
+              className="skill-group-6d glass-6d"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ translateZ: 50, rotateX: 5, y: -10 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <h3 className="category-title">{category.title}</h3>
-              <div className="skills-list">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    className="skill-item"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="skill-icon">
+              <h3 className="skill-group-title-6d">{category.title}</h3>
+              <div className="skill-items-6d">
+                {category.skills.map((skill, sidx) => (
+                  <div key={sidx} className="skill-node-6d">
+                    <div className="skill-icon-6d">
                       <FontAwesomeIcon icon={iconMap[skill.icon]} />
                     </div>
-                    <span className="skill-name">{skill.name}</span>
-                  </motion.div>
+                    <span className="skill-label-6d">{skill.name}</span>
+                  </div>
                 ))}
               </div>
             </motion.div>
