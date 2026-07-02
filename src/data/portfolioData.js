@@ -166,14 +166,31 @@ export const PROJECTS = [
     codeLink: 'https://github.com/KandhalShakil/Portfolio_react'
   },
   {
-    title: 'Kandhal Invoice System',
+    title: 'TaskForge',
+    category: 'SaaS',
+    description: 'Full-stack project management SaaS with workspaces, Kanban workflows, collaboration, and analytics.',
+    image: '/images/projects/taskforge.png',
+    tags: ['React', 'Vite', 'Django', 'DRF', 'PostgreSQL', 'Kanban'],
+    liveLink: 'https://www.task-forge.kandhal.tech/workspaces',
+    codeLink: 'https://github.com/KandhalShakil/TaskForge'
+  },
+  {
+  title: 'Planora',
+  category: 'Productivity',
+  description: 'Production-grade task management system with JWT authentication, optimistic UI updates, client-side filtering, task prioritization, and high-performance workflow management.',
+  image: '/images/projects/planora.png',
+  tags: ['Node.js','Express','MongoDB','JWT','JavaScript'],
+  liveLink: 'https://www.planora.kandhal.tech',
+  codeLink: 'https://github.com/KandhalShakil/Planora'
+},
+  {
+    title: 'Invoicely - Invoice Management System',
     category: 'SaaS',
     description: 'Full-featured invoice management system with PDF generation and client tracking',
     image: '/images/projects/invoice.png',
-    tags: ['Python', 'Django', 'PDF Generation', 'JavaScript'],
-    liveLink: 'https://www.invoice.kandhal.tech',
-    codeLink: 'https://github.com/KandhalShakil/Invoice_system',
-    comingSoon: true
+    tags: ['Python', 'Django', 'PDF Generation', 'JavaScript', 'Database Management'],
+    liveLink: 'https://www.invoicely.kandhal.tech',
+    codeLink: 'https://github.com/KandhalShakil/Invoicely',
   },
   {
     title: 'SKY Event',
@@ -194,15 +211,6 @@ export const PROJECTS = [
     codeLink: 'https://github.com/KandhalShakil/SchemeSnap-AI'
   },
   {
-    title: 'Weather Dashboard',
-    category: 'Web',
-    description: 'Full-stack weather dashboard with real-time conditions, AQI insights, and forecast tracking.',
-    image: '/images/projects/weather.png',
-    tags: ['.NET', 'C#', 'HTML', 'JavaScript', 'OpenWeather API'],
-    liveLink: 'https://www.weather-intelligence-dashboard.kandhal.tech',
-    codeLink: 'https://github.com/KandhalShakil/Weather-Intelligence-Dashboard'
-  },
-  {
     title: 'Sorting Algorithm Performance Analyzer',
     category: 'Web',
     description: 'Interactive analyzer to compare sorting algorithms using execution time, comparisons, and swaps.',
@@ -211,15 +219,6 @@ export const PROJECTS = [
     liveLink: 'http://sorting-algorithm-performance-analyzer.kandhal.tech',
     codeLink: 'https://github.com/KandhalShakil/Sorting-Algorithm-Performance-Analyzer'
   },
-  {
-    title: 'TaskForge',
-    category: 'SaaS',
-    description: 'Full-stack project management SaaS with workspaces, Kanban workflows, collaboration, and analytics.',
-    image: '/images/projects/taskforge.png',
-    tags: ['React', 'Vite', 'Django', 'DRF', 'PostgreSQL', 'Kanban'],
-    liveLink: 'https://www.task-forge.kandhal.tech/workspaces',
-    codeLink: 'https://github.com/KandhalShakil/TaskForge'
-  }
 ];
 
 export const CERTIFICATE_MESSAGES = {
