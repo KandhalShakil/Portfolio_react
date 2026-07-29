@@ -13,6 +13,7 @@ import Navbar from './components/Navbar.jsx';
 const Hero = lazy(() => import('./components/Hero.jsx'));
 const About = lazy(() => import('./components/About.jsx'));
 const Skills = lazy(() => import('./components/Skills.jsx'));
+const Experience = lazy(() => import('./components/Experience.jsx'));
 const Projects = lazy(() => import('./components/Projects.jsx'));
 const Education = lazy(() => import('./components/Education.jsx'));
 const Certifications = lazy(() => import('./components/Certifications.jsx'));
@@ -76,6 +77,7 @@ function App() {
             <Hero />
             <About />
             <Skills />
+            <Experience />
             <Education />
             <Certifications />
             <Projects />

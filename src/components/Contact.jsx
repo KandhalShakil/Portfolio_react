@@ -78,10 +78,10 @@ const Contact = () => {
     }
 
     setFormStatus(prev => ({ ...prev, otpSending: true, error: null }));
-    
+
     const newOtp = generateOtp();
     const sent = await sendOtpEmail(formData.email, newOtp);
-    
+
     if (sent) {
       setShowOtpPopup(true);
       setOtpVerified(false);
@@ -96,11 +96,11 @@ const Contact = () => {
 
   const handleResendOtp = async () => {
     if (timeLeft > 0 || formStatus.otpSending) return;
-    
+
     setFormStatus(prev => ({ ...prev, otpSending: true }));
     const newOtp = generateOtp();
     const sent = await sendOtpEmail(formData.email, newOtp);
-    
+
     if (sent) {
       setOtpError("");
       setOtp(["", "", "", "", "", ""]);
@@ -193,7 +193,7 @@ const Contact = () => {
                   <div className="info-icon-6d"><div className="status-pulse"></div></div>
                   <div className="info-text-6d">
                     <span className="info-label">AVAILABILITY</span>
-                    <span className="status-text">OPEN FOR FREELANCE WORK</span>
+                    <span className="status-text">OPEN TO WORK</span>
                   </div>
                 </div>
               </div>
@@ -261,9 +261,9 @@ const Contact = () => {
                   <div className="input-focus-glow"></div>
                 </div>
 
-                <button 
-                  type="submit" 
-                  className={`btn-6d primary magnetic-btn ${formStatus.otpSending ? 'loading' : ''}`} 
+                <button
+                  type="submit"
+                  className={`btn-6d primary magnetic-btn ${formStatus.otpSending ? 'loading' : ''}`}
                   disabled={formStatus.otpSending}
                 >
                   <FaPaperPlane className="btn-icon" />
@@ -306,11 +306,11 @@ const Contact = () => {
               <button className="btn-6d primary-6d verify-main" onClick={verifyOtp} disabled={otp.join("").length !== 6 || otpVerified}>
                 {otpVerified ? "VERIFIED SUCCESS" : "VERIFY DATA"}
               </button>
-              
+
               <div className="otp-actions-row">
-                <button 
-                  className="resend-link" 
-                  onClick={handleResendOtp} 
+                <button
+                  className="resend-link"
+                  onClick={handleResendOtp}
                   disabled={timeLeft > 0 || formStatus.otpSending}
                 >
                   {formStatus.otpSending ? "SENDING..." : timeLeft > 0 ? `RESEND IN ${timeLeft}s` : "RESEND CODE"}

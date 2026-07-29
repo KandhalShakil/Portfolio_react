@@ -19,6 +19,7 @@ export const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'certifications', label: 'Certifications' },
   { id: 'projects', label: 'Projects' },
@@ -60,6 +61,19 @@ export const SKILL_CATEGORIES = [
       { name: 'VS Code', icon: 'code' },
       { name: 'REST APIs', icon: 'cloud' },
       { name: 'Agile', icon: 'cog' }
+    ]
+  }
+];
+
+export const EXPERIENCE_ITEMS = [
+  {
+    title: 'Full Stack Developer Intern',
+    company: 'VIVID Nexus',
+    duration: 'July 2026 - Present',
+    type: 'experience',
+    points: [
+      'Working as a Full Stack Developer Intern',
+      'Contributing to modern web applications and features'
     ]
   }
 ];
@@ -136,6 +150,24 @@ export const CERTIFICATIONS = [
     credentialId: '0178B60775HH'
   },
   {
+    name: 'Back-End Development with .NET',
+    provider: 'Coursera',
+    year: '2026',
+    icon: 'coursera',
+    link: 'https://coursera.org/verify/1XALENBM84H6',
+    image: '/images/certificates/Back-End_Development_with_DotNet.png',
+    credentialId: '1XALENBM84H6'
+  },
+  {
+    name: 'Building Generative AI-Powered Applications with Python',
+    provider: 'Coursera',
+    year: '2026',
+    icon: 'coursera',
+    link: 'https://coursera.org/verify/Y8OTRP2ML54Z',
+    image: '/images/certificates/Building Generative AI-Powered Applications with Python.png',
+    credentialId: 'Y8OTRP2ML54Z'
+  },
+  {
     name: 'Prompt Engineering: The Skill of Asking AI Right',
     provider: 'Wayspire',
     year: '2024',
@@ -144,15 +176,6 @@ export const CERTIFICATIONS = [
     image: '/images/certificates/prompt_engg.png',
     credentialId: 'WAY-2024-PE-092'
   },
-  {
-    name: 'Back-End Development with .NET',
-    provider: 'Coursera',
-    year: '2026',
-    icon: 'coursera',
-    link: 'https://coursera.org/verify/1XALENBM84H6',
-    image: '/images/certificates/Back-End_Development_with_DotNet.png',
-    credentialId: '1XALENBM84H6'
-  }
 ];
 
 export const PROJECTS = [
@@ -175,14 +198,14 @@ export const PROJECTS = [
     codeLink: 'https://github.com/KandhalShakil/TaskForge'
   },
   {
-  title: 'Planora',
-  category: 'Productivity',
-  description: 'Production-grade task management system with JWT authentication, optimistic UI updates, client-side filtering, task prioritization, and high-performance workflow management.',
-  image: '/images/projects/planora.png',
-  tags: ['Node.js','Express','MongoDB','JWT','JavaScript'],
-  liveLink: 'https://www.planora.kandhal.tech',
-  codeLink: 'https://github.com/KandhalShakil/Planora'
-},
+    title: 'Planora',
+    category: 'Productivity',
+    description: 'Production-grade task management system with JWT authentication, optimistic UI updates, client-side filtering, task prioritization, and high-performance workflow management.',
+    image: '/images/projects/planora.png',
+    tags: ['Node.js', 'Express', 'MongoDB', 'JWT', 'JavaScript'],
+    liveLink: 'https://www.planora.kandhal.tech',
+    codeLink: 'https://github.com/KandhalShakil/Planora'
+  },
   {
     title: 'Invoicely - Invoice Management System',
     category: 'SaaS',
