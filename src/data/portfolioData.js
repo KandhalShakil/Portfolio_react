@@ -69,11 +69,21 @@ export const EXPERIENCE_ITEMS = [
   {
     title: 'Full Stack Developer Intern',
     company: 'VIVID Nexus',
-    duration: 'July 2026 - Present',
+    duration: 'July 2026 - August 2026',
     type: 'experience',
     points: [
       'Working as a Full Stack Developer Intern',
       'Contributing to modern web applications and features'
+    ]
+  },
+  {
+    title: 'Python Trainee',
+    company: 'Actowiz data solution PVT LTD',
+    duration: 'September 2026 - Present',
+    type: 'experience',
+    points: [
+      'Python-based web scraping and data extraction solutions',
+      'Working with APIs, structured and unstructured data, and automated data pipelines. I specialize in collecting, processing, and transforming web data into clean, reliable, and usable datasets.'
     ]
   }
 ];
