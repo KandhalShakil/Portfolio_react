@@ -29,6 +29,8 @@ const Contact = () => {
     error: null,
     otpSending: false,
   });
+  const [formStartedAt] = useState(() => Date.now());
+  const [honeypot, setHoneypot] = useState("");
 
   useEffect(() => {
     if (!showOtpPopup || timeLeft <= 0) return;
@@ -43,7 +45,9 @@ const Contact = () => {
   };
 
   const generateOtp = () => {
-    const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    const values = new Uint32Array(1);
+    window.crypto.getRandomValues(values);
+    const newOtp = String(100000 + (values[0] % 900000));
     setGeneratedOtp(newOtp);
     setTimeLeft(300);
     return newOtp;
@@ -52,6 +56,8 @@ const Contact = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
 
   const sendOtpEmail = async (email, otpCode) => {
     try {
@@ -72,15 +78,38 @@ const Contact = () => {
     e.preventDefault();
     if (formStatus.otpSending) return; // Prevent multi-click spam
 
-    if (!formData.email || !formData.name || !formData.subject || !formData.message) {
+    if (honeypot || Date.now() - formStartedAt < 1200) return;
+
+    const normalizedData = Object.fromEntries(
+      Object.entries(formData).map(([key, value]) => [key, value.trim()])
+    );
+
+    if (
+      !normalizedData.email ||
+      !normalizedData.name ||
+      !normalizedData.subject ||
+      !normalizedData.message
+    ) {
       setFormStatus({ ...formStatus, error: "Please fill in all fields" });
       return;
     }
 
+    if (!isValidEmail(normalizedData.email)) {
+      setFormStatus({ ...formStatus, error: "Please enter a valid email address" });
+      return;
+    }
+
+    if (Object.values(normalizedData).some((value) => value.length > 2000)) {
+      setFormStatus({ ...formStatus, error: "Please shorten your message" });
+      return;
+    }
+
+    setFormData(normalizedData);
+
     setFormStatus(prev => ({ ...prev, otpSending: true, error: null }));
 
     const newOtp = generateOtp();
-    const sent = await sendOtpEmail(formData.email, newOtp);
+    const sent = await sendOtpEmail(normalizedData.email, newOtp);
 
     if (sent) {
       setShowOtpPopup(true);
@@ -130,7 +159,13 @@ const Contact = () => {
       const response = await fetch("https://formspree.io/f/xzddgjdl", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, _subject: `Portfolio Contact: ${formData.subject}` }),
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          _subject: `Portfolio Contact: ${formData.subject.trim()}`
+        }),
       });
       if (response.ok) {
         setFormStatus({ submitting: false, submitted: true, error: null });
@@ -236,28 +271,39 @@ const Contact = () => {
               </motion.div>
             ) : (
               <form className="contact-form-6d glass-6d" onSubmit={handleSubmit}>
+                <div className="form-honeypot" aria-hidden="true">
+                  <label htmlFor="website">Leave this field empty</label>
+                  <input
+                    id="website"
+                    name="website"
+                    tabIndex="-1"
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
                 <div className="form-row-6d">
                   <div className="input-group-6d">
                     <label>NAME</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Enter your name..." />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} required maxLength="120" autoComplete="name" placeholder="Enter your name..." />
                     <div className="input-focus-glow"></div>
                   </div>
                   <div className="input-group-6d">
                     <label>EMAIL</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="Enter uplink address..." />
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required maxLength="254" autoComplete="email" placeholder="Enter uplink address..." />
                     <div className="input-focus-glow"></div>
                   </div>
                 </div>
 
                 <div className="input-group-6d">
                   <label>SUBJECT</label>
-                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Define inquiry..." />
+                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} required maxLength="200" placeholder="Define inquiry..." />
                   <div className="input-focus-glow"></div>
                 </div>
 
                 <div className="input-group-6d">
                   <label>MESSAGE</label>
-                  <textarea name="message" value={formData.message} onChange={handleChange} required rows="5" placeholder="Input transmission content..."></textarea>
+                  <textarea name="message" value={formData.message} onChange={handleChange} required maxLength="2000" rows="5" placeholder="Input transmission content..."></textarea>
                   <div className="input-focus-glow"></div>
                 </div>
 

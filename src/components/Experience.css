@@ -200,11 +200,28 @@
 }
 
 @media (max-width: 480px) {
+  .experience-section {
+    padding-inline: 1rem;
+  }
+
   .experience-card {
     padding: 2rem;
   }
 
   .job-title {
     font-size: 1.5rem;
+  }
+
+  .timeline-container {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-dot {
+    left: -1.5rem;
+  }
+
+  .points-list li {
+    font-size: 0.95rem;
+    padding-left: 1.5rem;
   }
 }

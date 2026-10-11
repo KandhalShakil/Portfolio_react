@@ -264,4 +264,37 @@
     padding: 0.6rem 1.5rem;
     border-radius: 100px;
   }
+
+  .navbar-6d {
+    padding: 1rem 0;
+  }
+
+  .logo-accent {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+  }
+
+  .mobile-panel-content {
+    width: min(88%, 360px);
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container-6d {
+    width: calc(100% - 1.5rem);
+    padding-inline: 1rem;
+  }
+
+  .mobile-panel-header {
+    margin-bottom: 3rem;
+  }
+
+  .mobile-link {
+    gap: 1rem;
+  }
+
+  .link-text {
+    font-size: 1.25rem;
+  }
 }

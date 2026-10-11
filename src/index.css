@@ -12,7 +12,7 @@
   /* Spacing Tokens */
   --container-max: 1400px;
   --nav-height: 80px;
-  --section-padding: clamp(6rem, 12vw, 10rem);
+  --section-padding: clamp(4.5rem, 10vw, 10rem);
 
   /* Design Tokens */
   --glass-border: rgba(255, 255, 255, 0.08);
@@ -34,6 +34,17 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
 }
 
 /* Typography System */
@@ -177,4 +188,35 @@ p {
 ::selection {
   background: var(--electric-blue);
   color: var(--space-black);
+}
+
+@media (max-width: 768px) {
+  .container-6d {
+    padding-inline: 1.25rem;
+  }
+
+  .title-6d {
+    margin-bottom: 1.25rem;
+  }
+
+  .label-6d {
+    letter-spacing: 0.25em;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-6d {
+    padding-inline: 1rem;
+  }
+
+  .btn-6d {
+    min-height: 48px;
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-6d {
+    display: none;
+  }
 }

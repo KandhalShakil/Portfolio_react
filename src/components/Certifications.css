@@ -245,7 +245,18 @@
 }
 
 @media (max-width: 768px) {
-  .certs-container-proper { padding: 0 1.5rem; }
-  .cert-card-proper { height: 420px; }
+  .certs-section-proper { padding: var(--section-padding) 0; }
+  .certs-container-proper { padding: 0 1.25rem; }
+  .header-top-row { align-items: flex-start; }
+  .cert-card-proper { height: auto; min-height: 420px; }
   .carousel-controls-proper { display: none; }
+}
+
+@media (max-width: 480px) {
+  .certs-container-proper { padding: 0 1rem; }
+  .certs-title-proper { font-size: 2rem; }
+  .cert-card-proper { min-height: 0; }
+  .cert-media-top { height: 170px; }
+  .cert-info-middle { padding: 1.5rem; }
+  .cert-footer-bottom { padding-inline: 1.5rem; }
 }

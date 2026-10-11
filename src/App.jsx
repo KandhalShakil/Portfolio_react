@@ -4,9 +4,9 @@ import ErrorBoundary from './components/ErrorBoundary.jsx';
 import './components/ErrorBoundary.css';
 import Lenis from 'lenis';
 
-// 6D Experience Components (Immediate Load)
-import Experience6D from './components/Experience6D.jsx';
-import Cursor6D from './components/Cursor6D.jsx';
+// 6D Experience Components are deferred so the interface can become interactive first.
+const Experience6D = lazy(() => import('./components/Experience6D.jsx'));
+const Cursor6D = lazy(() => import('./components/Cursor6D.jsx'));
 import Navbar from './components/Navbar.jsx';
 
 // Lazy Loaded Sections for Performance
@@ -69,8 +69,10 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="App">
-        <Experience6D />
-        <Cursor6D />
+        <Suspense fallback={null}>
+          <Experience6D />
+          <Cursor6D />
+        </Suspense>
         <Navbar />
         <main className="relative z-10">
           <Suspense fallback={<SectionLoader />}>

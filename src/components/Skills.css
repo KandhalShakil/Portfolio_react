@@ -109,6 +109,10 @@
 }
 
 @media (max-width: 768px) {
+  .skills-6d {
+    padding-inline: 1.25rem;
+  }
+
   .skills-grid-6d {
     grid-template-columns: 1fr;
   }
@@ -116,5 +120,20 @@
   .skill-group-6d {
     padding: 2rem;
     min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-6d {
+    padding-inline: 1rem;
+  }
+
+  .skills-header-6d {
+    margin-bottom: 3rem;
+  }
+
+  .skill-group-6d {
+    padding: 1.5rem;
+    border-radius: 18px;
   }
 }

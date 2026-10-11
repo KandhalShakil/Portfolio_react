@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
+# Robots.txt is a crawler preference, not an access-control mechanism.
 User-agent: *
-Disallow:
+Disallow: /api/
+Disallow: /private/
+Crawl-delay: 10

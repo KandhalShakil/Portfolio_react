@@ -195,11 +195,76 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    padding: 7rem 1rem 5rem;
+  }
+
+  .hero-content-6d {
+    padding: 0;
+  }
+
+  .hero-status-pill {
+    max-width: 100%;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-align: left;
+  }
+
+  .hero-title-6d {
+    font-size: clamp(2.5rem, 13vw, 5rem);
+    line-height: 0.98;
+  }
+
+  .hero-subtitle-6d {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    margin-bottom: 2.5rem;
+  }
+
   .hero-actions-6d {
     flex-direction: column;
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
     gap: 1rem;
+  }
+
+  .scroll-indicator-6d {
+    bottom: 1.25rem;
+  }
+
+  .scroll-indicator-6d span {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+  }
+
+  .holographic-structure {
+    width: 260px;
+    height: 260px;
+    right: -30%;
+    top: 18%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-inline: 0.75rem;
+  }
+
+  .hero-title-6d {
+    font-size: clamp(2.25rem, 14vw, 4rem);
+  }
+
+  .hero-actions-6d {
+    max-width: none;
+  }
+
+  .hero-actions-6d .btn-6d {
+    width: 100%;
+    padding-inline: 1rem;
+    font-size: 0.72rem;
   }
 }

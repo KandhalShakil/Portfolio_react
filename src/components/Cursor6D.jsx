@@ -25,6 +25,7 @@ const Cursor6D = () => {
     <>
       {/* Outer Ring */}
       <motion.div
+        className="cursor-6d"
         style={{
           position: 'fixed',
           left: 0,
@@ -44,6 +45,7 @@ const Cursor6D = () => {
       />
       {/* Inner Dot */}
       <motion.div
+        className="cursor-6d"
         style={{
           position: 'fixed',
           left: 0,
@@ -62,6 +64,7 @@ const Cursor6D = () => {
       />
       {/* Trail/Light Field */}
       <motion.div
+        className="cursor-6d"
         style={{
           position: 'fixed',
           left: 0,
